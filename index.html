@@ -1,0 +1,1117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Sacred Resin: Boswellia Sacra & Spatial Matrix (Simple and Kids)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Atkinson+Hyperlegible:wght@400;700&family=Baloo+2:wght@600;800&family=Young+Serif&family=Cairo:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: masthead, globe stage beside a legend column, then anatomy engine with a 6D matrix strip. Single holographic dark world. */
+:root{
+  --bg:#060a0f; --panel:#0b131b; --panel2:#0f1a24; --line:#1b2b3a;
+  --fg:#e2ecf0; --muted:#8ba2af; --gold:#f2bb4b; --cyan:#4de8ff; --violet:#b58cff;
+  --accent:#4de8ff;
+  --display:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
+  --body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.55 var(--body);
+  padding-block:0 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  background-image:radial-gradient(1200px 600px at 80% -10%,rgba(77,232,255,.08),transparent 60%),radial-gradient(900px 500px at 0% 20%,rgba(242,187,75,.06),transparent 60%);}
+.wrap{max-width:1560px;margin:0 auto}
+a{color:var(--cyan)}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+header.mast{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px 48px;padding-block:44px 28px;border-bottom:1px solid var(--line);align-items:end}
+.eyebrow{font:500 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 16px}
+h1{font:600 clamp(34px,5.6vw,64px)/1.02 var(--display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1 em{font-style:italic;color:var(--gold);font-weight:500}
+.author{border-left:1px solid var(--line);padding-left:24px;display:grid;gap:6px;font-size:14px;color:var(--muted)}
+.author b{color:var(--fg);font-weight:600}
+.author .name{font:600 22px/1.2 var(--display);color:var(--fg)}
+.author .row{display:flex;gap:8px;flex-wrap:wrap;align-items:baseline}
+.author .k{font:500 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.author a{overflow-wrap:anywhere}
+section{padding-block:34px 4px}
+h2{font:600 clamp(24px,3.2vw,34px)/1.1 var(--display);margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 18px;max-width:70ch}
+.tag{font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.8fr);gap:20px;align-items:start}
+.stage{background:radial-gradient(circle at 50% 45%,#0c1a26,#060a0f 70%);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.view{position:relative}
+.cv{position:relative}
+.labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.lb{position:absolute;left:0;top:0;white-space:nowrap;font:500 11px/1 var(--mono);text-shadow:0 0 2px #00172e,0 0 5px #00172e,0 0 9px #00172e,0 0 12px #00172e;will-change:transform}
+.lb.sea{color:#bfe3ff;font-size:12px;font-style:italic;letter-spacing:.16em;text-transform:uppercase}
+.lb.land{color:#d6ffe2;letter-spacing:.18em;font-size:12px}
+.lb.pl{font-size:13px;font-weight:600;color:#fff}
+.lb.pl.core{color:#ffd77a}
+.lb.pl.rel{color:#d3b8ff}
+canvas{display:block;width:100%;touch-action:pan-y;cursor:grab}
+canvas:active{cursor:grabbing}
+#globe{aspect-ratio:16/10;max-height:86vh;min-height:440px;cursor:grab;touch-action:pan-y}
+#globe.drag{cursor:grabbing}
+.pad{position:absolute;right:14px;bottom:14px;display:grid;grid-template-columns:repeat(3,38px);grid-auto-rows:38px;gap:4px;z-index:2}
+.pad button{background:rgba(11,19,27,.85);color:var(--fg);border:1px solid var(--line);border-radius:4px;font:500 17px/1 var(--mono);cursor:pointer}
+.pad button:hover{border-color:var(--gold);color:var(--gold)}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px;align-items:start}
+.dimmed{opacity:.38}
+.matrix div.off{opacity:.38}
+.matrix div.off .v{color:var(--muted)}
+.dimnote{font-size:13.5px;color:var(--muted);margin:0 0 14px}
+#tree{aspect-ratio:4/3;max-height:70vh}
+.hud{display:flex;flex-wrap:wrap;gap:6px 22px;padding:10px 14px;border-top:1px solid var(--line);font:400 12px/1.4 var(--mono);color:var(--muted);background:var(--panel)}
+.hud b{color:var(--cyan);font-weight:500}
+.side{display:grid;gap:16px;min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px;min-width:0}
+.card h3{font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 12px}
+.legend{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.legend li{display:flex;gap:10px;align-items:center;font-size:13.5px}
+.sw{flex:none;width:12px;height:12px;border-radius:50%;box-shadow:0 0 10px currentColor;background:currentColor}
+.sw.line{border-radius:0;height:2px;width:18px}
+.toggles{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+label.chk{display:flex;gap:8px;align-items:center;font-size:13.5px;cursor:pointer}
+input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--accent)}
+.sel h4{font:600 24px/1.15 var(--display);margin:0 0 2px}
+.sel .coords{font:400 12px/1.4 var(--mono);color:var(--cyan);margin-bottom:8px}
+.sel p{margin:0;color:var(--muted);font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:var(--panel2);color:var(--fg);border:1px solid var(--line);border-radius:3px;padding:6px 10px;font:400 12.5px/1.2 var(--body);cursor:pointer;text-align:left}
+.chip:hover{border-color:var(--muted)}
+.chip[aria-pressed=true]{border-color:var(--accent);color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.matrix{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-top:1px solid var(--line);background:var(--panel)}
+.matrix div{padding:10px 12px;border-right:1px solid var(--line);min-width:0}
+.matrix div:last-child{border-right:0}
+.matrix .d{font:500 10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+.matrix .v{font:500 14px/1.2 var(--mono);color:var(--band,var(--accent));font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.ctl{display:grid;gap:6px;margin-bottom:14px}
+.ctl:last-child{margin-bottom:0}
+.ctl .lab{display:flex;justify-content:space-between;gap:10px;font-size:13.5px}
+.ctl .lab span:last-child{font:400 12px/1.5 var(--mono);color:var(--accent);text-align:right}
+.phase{font-size:13.5px;color:var(--muted);margin:0}
+.bars{display:grid;gap:9px}
+.bar{display:grid;grid-template-columns:minmax(0,9.5em) 1fr;gap:10px;align-items:center;font-size:12.5px}
+.bar i{display:block;height:6px;background:var(--panel2);border-radius:3px;overflow:hidden}
+.bar i u{display:block;height:100%;background:var(--muted);text-decoration:none}
+.bar.on i u{background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.bar.on{color:var(--fg)}
+.note{font-size:12.5px;color:var(--muted);margin:10px 0 0}
+footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px;display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between}
+@media (max-width:900px){
+  header.mast{grid-template-columns:1fr}
+  .author{border-left:0;border-top:1px solid var(--line);padding:16px 0 0}
+  .grid{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}
+  #globe{aspect-ratio:auto;height:78vh;height:80svh;min-height:540px;max-height:none}
+  .pad{position:static;grid-template-columns:repeat(7,1fr);grid-auto-rows:42px;padding:10px;border-top:1px solid var(--line);background:var(--panel)}
+  .pad span{display:none}
+  .lb{font-size:10px}
+  .lb.land,.lb.sea{font-size:10px;letter-spacing:.06em}
+  .lb.pl{font-size:11.5px}
+  .matrix{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .matrix div:nth-child(3){border-right:0}
+  .matrix div:nth-child(n+4){border-top:1px solid var(--line)}
+}
+
+/* ---------- three reading modes ---------- */
+body.simple .x-only,body.kids .x-only{display:none!important}
+body:not(.simple) .s-only{display:none!important}
+body:not(.kids) .k-only{display:none!important}
+body:not(.simple):not(.kids) .sk-only{display:none!important}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:99px;overflow:hidden;background:var(--panel)}
+.seg button{padding:11px 20px;background:transparent;border:0;color:var(--fg);font:600 15px/1 var(--body);cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--accent);color:#041a20}
+.seg button[data-m=kids]{background:linear-gradient(90deg,#ff6fa5,#ffc21a,#4ad6c3);color:#35176b;font-weight:700}
+.seg button[data-m=kids][aria-pressed=true]{box-shadow:inset 0 0 0 3px #35176b}
+body.simple,body.kids{color-scheme:light;--mono:var(--body);background-image:none}
+body.simple{
+  --bg:#f3f7f9;--panel:#ffffff;--panel2:#eaf2f6;--line:#cfdee5;--fg:#12313a;--muted:#4a6670;--gold:#b0720a;--cyan:#0e6b78;--accent:#0e6b78;
+  --display:"Young Serif",Georgia,serif;--body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px}
+body.kids{
+  --bg:#fff1b8;--panel:#ffffff;--panel2:#fff6d6;--line:#35176b;--fg:#35176b;--muted:#5a3a93;--gold:#d96100;--cyan:#00899b;--accent:#e91e8c;
+  --display:"Baloo 2",system-ui,sans-serif;--body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px}
+body.simple .stage,body.kids .stage{--panel:#0b131b;--panel2:#0f1a24;--line:#1b2b3a;--fg:#e2ecf0;--muted:#8ba2af;--cyan:#4de8ff;--accent:#4de8ff;color:var(--fg)}
+body.simple h1,body.kids h1{font-family:var(--display)}
+body.simple h2,body.kids h2{font-family:var(--display)}
+body.simple .eyebrow,body.simple .tag,body.kids .eyebrow,body.kids .tag{font-family:var(--body);text-transform:none;letter-spacing:.02em;font-size:14px;font-weight:700}
+body.simple .eyebrow{color:var(--cyan)}
+body.kids h1,body.kids h2{font-weight:800}
+body.kids header.mast{background:#ffd84d;margin-inline:-16px;padding-inline:16px;border-bottom:3px solid #35176b}
+body.kids .eyebrow{color:#35176b}
+body.kids h1 em{color:#e91e8c}
+body.simple h1 em{color:var(--gold)}
+body.simple .author .k,body.kids .author .k{font-family:var(--body)}
+body.kids .card,body.kids .stage{border:3px solid #35176b;border-radius:20px;box-shadow:5px 5px 0 #35176b}
+body.simple .card,body.simple .stage{border-radius:10px}
+body.kids .card h3,body.simple .card h3{font-family:var(--body);text-transform:none;letter-spacing:.01em;font-size:16px;font-weight:800}
+body.kids .chip,body.simple .chip{font-family:var(--body);font-size:15px;font-weight:700;padding:9px 14px;border-radius:99px}
+body.kids .chip{border:2px solid #35176b;background:#fff}
+body.simple .chip[aria-pressed=true],body.kids .chip[aria-pressed=true]{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:none}
+body.simple .sel h4,body.kids .sel h4{font-family:var(--display)}
+body.simple .bar,body.kids .bar{font-size:14.5px}
+body.simple .sub,body.kids .sub{font-size:18px;color:var(--muted)}
+body.kids .sub{color:#35176b}
+body.simple .lb,body.kids .lb{font-family:var(--body)}
+.lb.camel{font-size:26px;text-shadow:none;display:none}
+body.kids .lb.camel{display:block}
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.cards3 .card h3{margin-bottom:6px}
+.cards3 .card p{margin:0}
+.btn{font:700 17px/1 var(--body);padding:14px 22px;border-radius:99px;border:2px solid #35176b;background:#e91e8c;color:#fff;cursor:pointer;box-shadow:3px 3px 0 #35176b}
+.btn:disabled{opacity:.5;cursor:default}
+.flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.flip{min-height:140px;text-align:left;border:3px solid #35176b;border-radius:20px;padding:18px;cursor:pointer;box-shadow:5px 5px 0 #35176b;font:700 18px/1.35 var(--body);color:#35176b}
+.flip small{display:block;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:6px}
+.flip:nth-child(1){background:#ff9ec7}.flip:nth-child(2){background:#9be7ff}.flip:nth-child(3){background:#c7b6ff}.flip:nth-child(4){background:#a8f0a0}
+.gamebox{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,.6fr);gap:20px;align-items:start}
+svg.game{display:block;width:100%;max-height:520px;background:linear-gradient(#aee6ff,#e6f9ff 70%);border:3px solid #35176b;border-radius:20px;box-shadow:5px 5px 0 #35176b;touch-action:manipulation}
+.score{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.score div{background:#fff;border:3px solid #35176b;border-radius:14px;padding:8px;text-align:center}
+.score b{display:block;font:800 28px/1 var(--display)}
+.score span{font:700 12px/1 var(--body);letter-spacing:.08em;text-transform:uppercase}
+.result{min-height:3em;font:800 22px/1.2 var(--display);margin:0 0 14px}
+.quiz .q{font:800 22px/1.25 var(--display);margin:0 0 14px}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;font:700 18px/1.3 var(--body);padding:14px 16px;border:3px solid #35176b;border-radius:14px;background:#fff;color:#35176b;cursor:pointer}
+.opt:hover{background:#fff1b8}
+.opt.good{background:#8be28b}
+.opt.bad{background:#ff9b9b;animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.prog{font:700 14px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.badges{display:flex;flex-wrap:wrap;gap:12px}
+.badge{display:flex;align-items:center;gap:10px;padding:12px 16px;border:3px dashed #35176b;border-radius:99px;background:#ffffffaa;font:700 16px/1.2 var(--body);opacity:.6}
+.badge b{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#ddd;border:3px solid #35176b;font-size:16px}
+.badge.got{opacity:1;border-style:solid;background:#fff;animation:pop .5s}
+.badge.got b{background:#ffc21a}
+@keyframes pop{50%{transform:scale(1.12) rotate(-2deg)}}
+#confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:50}
+#confetti i{position:absolute;top:-20px;width:10px;height:16px;border-radius:2px;animation:fall 1.9s ease-in forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+.words dt{font:700 17px/1.3 var(--body);color:var(--cyan)}
+.words dd{margin:0 0 10px}
+@media (max-width:900px){.gamebox{grid-template-columns:1fr}}
+
+/* ---- Arabic / RTL ---- */
+.topbar{display:flex;justify-content:flex-end;padding-top:14px}
+.lang{font:700 15px/1 var(--body);padding:10px 20px;border-radius:99px;border:1px solid var(--gold);background:transparent;color:var(--gold);cursor:pointer}
+.lang:hover{background:var(--gold);color:#041a20}
+body.kids .lang{background:#fff;color:#35176b;border:3px solid #35176b;box-shadow:3px 3px 0 #35176b;font-weight:800}
+html[lang=ar] body,html[lang=ar] body.simple,html[lang=ar] body.kids{--display:"Cairo","Segoe UI",Tahoma,Arial,sans-serif;--body:"Cairo","Segoe UI",Tahoma,Arial,sans-serif;--mono:"Cairo","Segoe UI",Tahoma,Arial,sans-serif}
+html[lang=ar] *{letter-spacing:0!important;text-transform:none!important}
+html[lang=ar] h1,html[lang=ar] h2{line-height:1.25}
+html[lang=ar] h1 em{font-style:normal}
+html[dir=rtl] .author{border-left:0;padding-left:0;border-right:1px solid var(--line);padding-right:24px}
+html[dir=rtl] .cv,html[dir=rtl] .pad,html[dir=rtl] input[type=range],html[dir=rtl] #game{direction:ltr}
+html[dir=rtl] .lb{direction:rtl}
+html[dir=rtl] .matrix .v,html[dir=rtl] .coords{unicode-bidi:plaintext}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<div class="topbar"><button type="button" class="lang" id="langBtn" lang="ar" aria-pressed="false">العربية</button></div>
+<header class="mast">
+  <div>
+    <p class="eyebrow" data-i="eyebrow">Holographic 6D multi-spectral anatomical engine</p>
+    <h1>The Sacred Resin: <em>Boswellia Sacra</em> &amp; Spatial Matrix</h1>
+    <div class="seg" role="group" aria-label="Choose how to read this page">
+      <button type="button" data-m="expert" aria-pressed="false">Expert</button>
+      <button type="button" data-m="simple" aria-pressed="true">Simple</button>
+      <button type="button" data-m="kids" aria-pressed="false">Kids</button>
+    </div>
+  </div>
+  <div class="author">
+    <span class="k">Author</span>
+    <span class="name">Asia Khan</span>
+    <b>Behavioural UX Researcher &amp; 3D Spatial Architect</b>
+    <span>Hon. BA, McMaster University</span>
+    <div class="row"><span class="k">Email</span><a href="mailto:asiaaamirkhan@outlook.com">asiaaamirkhan@outlook.com</a></div>
+  </div>
+</header>
+
+<section class="sk-only">
+  <h2 data-i="dhead">What do 3D, 4D, 5D and 6D mean?</h2>
+  <p class="sub" data-i="dsub">Each number adds one more kind of information to the map and the tree.</p>
+  <div class="cards3">
+    <div class="card"><h3 data-i="d3t">3D · Place</h3><p data-i="d3">Three directions: east–west, north–south, and how far you zoom in.</p></div>
+    <div class="card"><h3 data-i="d4t">4D · Time</h3><p data-i="d4">Adds time. Slide through the months to see mist, harvest and leaves change.</p></div>
+    <div class="card"><h3 data-i="d5t">5D · Light</h3><p data-i="d5">Adds a special camera. See the world in heat, ultraviolet or X-ray colours.</p></div>
+    <div class="card"><h3 data-i="d6t">6D · Contents</h3><p data-i="d6">Adds what the resin is made of. Pick an ingredient to light it up.</p></div>
+  </div>
+</section>
+
+<section>
+  <p class="tag" data-i="t1">Layer 01 · Geo globe</p>
+  <h2 data-i="h1s">Where the frankincense tree grows</h2>
+  <p class="sub" data-i="sub1">The globe stays fixed and never spins. Scroll or use + and − to zoom, drag or use the arrows to move across the map, and pick 3D to 6D to add time, spectral band and chemistry.</p>
+  <div class="stage">
+    <div class="view">
+      <div class="cv"><canvas id="globe" aria-label="3D holographic map of the Arabian Peninsula showing where frankincense grows and the old Incense Route"></canvas>
+      <div class="labels" id="gLabels" aria-hidden="true"></div></div>
+      <div class="pad" role="group" aria-label="Map zoom and move controls">
+        <button id="zIn" aria-label="Zoom in">+</button><button id="pU" aria-label="Move up">▲</button><button id="zOut" aria-label="Zoom out">−</button>
+        <button id="pL" aria-label="Move left">◀</button><button id="pH" aria-label="Reset view">⌂</button><button id="pR" aria-label="Move right">▶</button>
+        <span></span><button id="pD" aria-label="Move down">▼</button><span></span>
+      </div>
+    </div>
+    <div class="matrix" aria-label="Map readout">
+      <div><span class="d" data-i="gl1">1 · X lon</span><span class="v" id="gX">44.5°E</span></div>
+      <div><span class="d" data-i="gl2">2 · Y lat</span><span class="v" id="gY">21.0°N</span></div>
+      <div><span class="d" data-i="gl3">3 · Z zoom</span><span class="v" id="gZ">1.00×</span></div>
+      <div id="gcT"><span class="d" data-i="gl4">4 · T season</span><span class="v" id="gT">—</span></div>
+      <div id="gcL"><span class="d" data-i="gl5">5 · λ band</span><span class="v" id="gL">—</span></div>
+      <div id="gcC"><span class="d" data-i="gl6">6 · C chem</span><span class="v" id="gC">—</span></div>
+    </div>
+    <div class="hud"><span><span data-i="hudSel">Selected</span> <b id="gSel">Dhofar highlands</b></span><span id="gPhase"></span></div>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <h3 data-i="dimH">Dimensions</h3>
+      <div class="chips" id="gDim" style="margin-bottom:12px"></div>
+      <p class="dimnote" id="dimNote"></p>
+      <div class="ctl" id="gTime"><div class="lab"><label for="gSeason" data-i="seasonL">Season</label><span id="gSeasonLab">May</span></div>
+        <input type="range" id="gSeason" min="0" max="11" step="1" value="4"></div>
+      <div id="gBandWrap" style="margin-bottom:12px"><h3 style="margin-bottom:8px" data-i="bandH">Spectral band</h3><div class="chips" id="gBand"></div></div>
+      <div id="gChemWrap"><h3 style="margin-bottom:8px" data-i="chemH">Chemistry focus</h3><div class="chips" id="gChem"></div></div>
+    </div>
+    <div class="card">
+      <h3 data-i="legH">Legend</h3>
+      <ul class="legend">
+        <li><span class="sw" style="color:#f2bb4b"></span><span data-i="lg1">Boswellia sacra range (marker and glow zone)</span></li>
+        <li><span class="sw" style="color:#b58cff"></span><span data-i="lg2">Related Boswellia species (Socotra)</span></li>
+        <li><span class="sw" style="color:#ffffff"></span><span data-i="lg3">Incense route stop</span></li>
+        <li><span class="sw line" style="color:#ffffff"></span><span data-i="lg4">Overland incense route</span></li>
+        <li><span class="sw" style="color:#4ade80"></span><span data-i="lg5">Land (green; recolours in 5D and 6D)</span></li>
+        <li><span class="sw" style="color:#1f78c8"></span><span data-i="lg6">Water (blue; recolours in 5D and 6D)</span></li>
+        <li><span class="sw" style="color:#9fe8ff;opacity:.6"></span><span data-i="lg7">Khareef monsoon mist (4D and up)</span></li>
+      </ul>
+      <div class="toggles">
+        <label class="chk"><input type="checkbox" id="tMark" checked><span data-i="tg1">Markers</span></label>
+        <label class="chk"><input type="checkbox" id="tRoute" checked><span data-i="tg2">Route</span></label>
+        <label class="chk"><input type="checkbox" id="tGrid" checked><span data-i="tg3">Graticule</span></label>
+        <label class="chk"><input type="checkbox" id="tLabels" checked><span data-i="tg4">Labels</span></label>
+      </div>
+    </div>
+    <div class="side">
+      <div class="card sel" aria-live="polite">
+        <h3 data-i="selH">Selected place</h3>
+        <h4 id="sName"></h4>
+        <div class="coords" id="sCoords"></div>
+        <p id="sNote"></p>
+      </div>
+      <div class="card">
+        <h3 data-i="plH">Places</h3>
+        <div class="chips" id="placeList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="tag" data-i="t2">Layer 02 · Anatomical engine</p>
+  <h2 data-i="h2b">Inside the tree, in six dimensions</h2>
+  <p class="sub" data-i="sub2">A stylised Boswellia sacra. Slice it open, change the imaging band, and move through the year. The matrix under the model reads out all six axes.</p>
+  <div class="grid">
+    <div class="stage">
+      <canvas id="tree" aria-label="Interactive 3D holographic model of a frankincense tree"></canvas>
+      <div class="matrix" aria-label="Tree readout">
+        <div><span class="d" data-i="tl1">1 · X yaw</span><span class="v" id="mX">0°</span></div>
+        <div><span class="d" data-i="tl2">2 · Y pitch</span><span class="v" id="mY">0°</span></div>
+        <div><span class="d" data-i="tl3">3 · Z cut</span><span class="v" id="mZ">0%</span></div>
+        <div><span class="d" data-i="tl4">4 · T season</span><span class="v" id="mT">Jan</span></div>
+        <div><span class="d" data-i="tl5">5 · λ band</span><span class="v" id="mL">Visible</span></div>
+        <div><span class="d" data-i="tl6">6 · C chem</span><span class="v" id="mC">Boswellic acids</span></div>
+      </div>
+    </div>
+    <div class="side">
+      <div class="card">
+        <h3 data-i="lyH">Anatomical layers</h3>
+        <div class="toggles" style="margin:0;padding:0;border:0">
+          <label class="chk"><input type="checkbox" data-layer="bark" checked><span data-i="ly1">Bark</span></label>
+          <label class="chk"><input type="checkbox" data-layer="canal" checked><span data-i="ly2">Resin canals</span></label>
+          <label class="chk"><input type="checkbox" data-layer="xylem" checked><span data-i="ly3">Xylem core</span></label>
+          <label class="chk"><input type="checkbox" data-layer="roots" checked><span data-i="ly4">Roots</span></label>
+          <label class="chk"><input type="checkbox" data-layer="leaves" checked><span data-i="ly5">Foliage</span></label>
+          <label class="chk"><input type="checkbox" data-layer="resin" checked><span data-i="ly6">Tapping &amp; resin</span></label>
+        </div>
+      </div>
+      <div class="card">
+        <h3 data-i="bandH2">Spectral band</h3>
+        <div class="chips" id="bandList"></div>
+      </div>
+      <div class="card">
+        <h3 data-i="tdH">Time and depth</h3>
+        <div class="ctl"><div class="lab"><label for="season" data-i="seasonL2">Season</label><span id="seasonLab">Jan</span></div>
+          <input type="range" id="season" min="0" max="11" step="1" value="4"></div>
+        <p class="phase" id="phase"></p>
+        <div class="ctl" style="margin-top:14px"><div class="lab"><label for="cut" data-i="cutL">Cutaway depth</label><span id="cutLab">45%</span></div>
+          <input type="range" id="cut" min="0" max="85" step="1" value="45"></div>
+      </div>
+      <div class="card">
+        <h3 data-i="chemH2">Chemistry focus</h3>
+        <div class="bars" id="bars"></div>
+        <p class="note" data-i="barsNote">Bars show an illustrative relative profile for frankincense resin, not measured values.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s-only">
+  <h2>Words to know</h2>
+  <dl class="words card" style="margin:0">
+    <dt>Resin</dt><dd>A sticky sap that hardens when it meets air. Frankincense is a resin.</dd>
+    <dt>Tapping</dt><dd>Making small cuts in the bark so the resin can flow out.</dd>
+    <dt>Incense Route</dt><dd>The old trade road that carried frankincense by camel from southern Arabia to the Mediterranean.</dd>
+    <dt>Khareef</dt><dd>The summer monsoon mist that waters the hills of Dhofar.</dd>
+  </dl>
+</section>
+
+<section class="k-only">
+  <h2>Did you know?</h2>
+  <p class="sub">Tap a card to flip it.</p>
+  <div class="flips" id="flips"></div>
+</section>
+
+<section class="k-only">
+  <h2>Game: catch the tears!</h2>
+  <p class="sub">Golden tears drip from the tree. Tap each one before it hits the ground. You have 30 seconds.</p>
+  <div class="gamebox">
+    <svg id="game" class="game" viewBox="0 0 400 420" aria-label="Game: tap the falling frankincense tears"><ellipse cx="200" cy="392" rx="170" ry="22" fill="#c9a86a" opacity=".55"/>
+<path d="M165,392 C172,340 160,296 172,246 L228,246 C240,296 230,340 237,392Z" fill="#a9733f" stroke="#35176b" stroke-width="3" stroke-linejoin="round"/>
+<path d="M185,380 C190,330 184,300 192,262 M214,380 C210,340 218,300 210,264" stroke="#7d4f27" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>
+<path d="M182,252 L112,178 M200,244 L200,150 M220,252 L292,182 M190,258 L132,218 M212,258 L268,214" stroke="#a9733f" stroke-width="13" stroke-linecap="round" fill="none"/>
+<g fill="#4ca83d" stroke="#35176b" stroke-width="3"><ellipse cx="106" cy="166" rx="44" ry="34"/><ellipse cx="200" cy="134" rx="50" ry="38"/><ellipse cx="296" cy="172" rx="44" ry="34"/><ellipse cx="128" cy="212" rx="34" ry="26"/><ellipse cx="272" cy="210" rx="34" ry="26"/></g>
+<g fill="#7ad25f" opacity=".8"><ellipse cx="96" cy="156" rx="18" ry="10"/><ellipse cx="190" cy="124" rx="20" ry="11"/><ellipse cx="288" cy="162" rx="18" ry="10"/></g><path d="M196,296 q10,-6 20,0 q-2,8 -10,10 q-8,-2 -10,-10Z" fill="#5a3515" stroke="#35176b" stroke-width="2"/><g id="drops"></g></svg>
+    <div>
+      <div class="score"><div><b id="gScore">0</b><span>Caught</span></div><div><b id="gMiss">0</b><span>Missed</span></div><div><b id="gmTime">30</b><span>Seconds</span></div></div>
+      <p class="result" id="gResult">Ready?</p>
+      <button class="btn" id="gStart" type="button">Start game</button>
+    </div>
+  </div>
+</section>
+
+<section class="k-only">
+  <h2>Quiz time</h2>
+  <div class="card quiz" id="quiz" style="max-width:720px"></div>
+</section>
+
+<section class="k-only">
+  <h2>Your badges</h2>
+  <div class="badges" id="badges"></div>
+</section>
+
+<footer>
+  <span data-i="foot">Geography is approximate and the land outline is stylised. Tree anatomy is a simplified teaching model.</span>
+  <span>Author: Asia Khan · Hon. BA, McMaster University</span>
+</footer>
+</div>
+<div id="confetti" aria-hidden="true"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+const $=s=>document.querySelector(s),$$=s=>Array.prototype.slice.call(document.querySelectorAll(s));
+const D2R=Math.PI/180, TAU=Math.PI*2;
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let mode='simple',badgesReady=false;const seenPl={};
+let lang='en';
+const mk=()=>lang==='ar'?'ar_'+mode:mode;
+const DC=c=>lang==='ar'?' '+({N:'شمالًا',S:'جنوبًا',E:'شرقًا',W:'غربًا'})[c]:c;
+const MI={expert:0,simple:1,kids:2};
+const clamp=(v,a=-1.25,b=1.25)=>Math.max(a,Math.min(b,v));
+function ll(lat,lon,r){r=r||1;const p=lat*D2R,l=lon*D2R;return new THREE.Vector3(r*Math.cos(p)*Math.sin(l),r*Math.sin(p),r*Math.cos(p)*Math.cos(l));}
+function fit(renderer,camera,canvas,distFn){
+  const w=canvas.clientWidth,h=canvas.clientHeight; if(!w||!h)return;
+  const s=renderer.getSize(new THREE.Vector2());
+  if(s.x!==w||s.y!==h){renderer.setSize(w,h,false);camera.aspect=w/h;if(distFn)distFn(camera);camera.updateProjectionMatrix();}
+}
+function dragger(canvas,obj,st){
+  let down=false,lx=0,ly=0,moved=0;
+  canvas.addEventListener('pointerdown',e=>{down=true;lx=e.clientX;ly=e.clientY;moved=0;st.vx=0;st.focus=null;try{canvas.setPointerCapture(e.pointerId)}catch(_){}});
+  canvas.addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-lx,dy=e.clientY-ly;lx=e.clientX;ly=e.clientY;moved+=Math.abs(dx)+Math.abs(dy);st.vx=dx*.005;obj.rotation.y+=dx*.005;obj.rotation.x=clamp(obj.rotation.x+dy*.005);});
+  const up=e=>{if(!down)return;down=false;if(moved<5&&st.onTap)st.onTap(e);};
+  canvas.addEventListener('pointerup',up);
+  canvas.addEventListener('pointercancel',()=>{down=false});
+  st.down=()=>down;
+}
+function easeTo(obj,st){
+  const f=st.focus; if(!f)return false;
+  let dy=((f.y-obj.rotation.y+Math.PI)%TAU+TAU)%TAU-Math.PI;
+  const dx=f.x-obj.rotation.x;
+  obj.rotation.y+=dy*.08;obj.rotation.x+=dx*.08;
+  if(Math.abs(dy)<.002&&Math.abs(dx)<.002)st.focus=null;
+  return true;
+}
+
+/* ---------- GLOBE ---------- */
+const places=[
+ {id:'dhofar',name:'Dhofar highlands, Oman',lat:17.1,lon:54.2,kind:'core',note:'Core of the range. Wadi Dawkah, Al Baleed, Khor Rori and Shisr form UNESCO’s Land of Frankincense (inscribed 2000). The prized Hojari grade comes from this region.',s:'The heart of frankincense country. Its trees give the best-known resin, called Hojari. In summer a monsoon mist turns the hills green.',k:'Hi! I am Dhofar in Oman. My rocky hills are home to the best tear trees. In summer a magic mist turns me green!'},
+ {id:'hadr',name:'Hadramawt, Yemen',lat:15.6,lon:49.4,kind:'core',note:'Wadis of eastern Yemen hold wild stands of the tree. For centuries the resin left from here by camel caravan.',s:'Dry valleys in eastern Yemen where wild frankincense trees grow. Camel caravans set off from here for centuries.',k:'Tear trees grow in my dry valleys too. Long ago camels carried the tears away from here!'},
+ {id:'som',name:'Northern Somali highlands',lat:10.9,lon:47.6,kind:'core',note:'Resin from this area was long sold as B. carterii, a name many authorities now fold into B. sacra.',s:'Frankincense trees also grow in the rocky highlands of northern Somalia.',k:'Hello from northern Somalia! Tear trees grow on my rocky hills too.'},
+ {id:'soc',name:'Socotra, Yemen',lat:12.5,lon:54.0,kind:'rel',note:'Island home to endemic relatives such as Boswellia socotrana. These are separate species, shown for context.',s:'An island with its own relatives of the frankincense tree. They are different species, shown for comparison.',k:'Socotra is an island with cousin trees. They are not the same tree, but they are family!'},
+ {id:'rori',name:'Khor Rori (Sumhuram)',lat:17.04,lon:54.44,kind:'trade',note:'Ancient harbour town on the Dhofar coast, a shipping point for resin.',s:'An old harbour on the Dhofar coast where resin was loaded onto ships.',k:'An old harbour where frankincense hopped onto ships!'},
+ {id:'shisr',name:'Shisr oasis',lat:18.25,lon:53.65,kind:'trade',note:'Desert oasis on the route, often linked with the legendary city of Ubar.',s:'A desert oasis on the trade road. Some people link it with the legendary city of Ubar.',k:'A desert water stop for thirsty camels. Some say a lost city called Ubar was near here!'},
+ {id:'najran',name:'Najran',lat:17.5,lon:44.1,kind:'trade',note:'Caravan stop in south-west Arabia on the way north.',s:'A caravan stop in south-west Arabia on the way north.',k:'A rest stop for tired camels and traders.'},
+ {id:'mecca',name:'Makkah region',lat:21.4,lon:39.8,kind:'trade',note:'Western Arabian trading hub along the Red Sea side of the route.',s:'A busy trading town near the Red Sea along the route north.',k:'A busy trading city near the Red Sea.'},
+ {id:'petra',name:'Petra',lat:30.33,lon:35.44,kind:'trade',note:'Nabataean city that taxed and redirected incense caravans.',s:'A city carved into rock where traders paid fees as caravans passed.',k:'A city carved into pink rock! Traders stopped here.'},
+ {id:'gaza',name:'Gaza',lat:31.5,lon:34.46,kind:'trade',note:'Mediterranean end of the overland route, where resin met sea trade.',s:'The end of the overland road, where goods met ships on the Mediterranean.',k:'The end of the camel road! Ships took frankincense across the sea from here.'}
+];
+const PAR={
+ dhofar:{name:'مرتفعات ظفار، عُمان',note:'قلب نطاق الانتشار. يشكّل وادي دوكة والبليد وخور روري وشصر «أرض اللبان» المدرجة لدى اليونسكو (2000). ويأتي اللبان الحوجري المميّز من هذه المنطقة.',s:'قلب بلاد اللبان. تعطي أشجارها أشهر أنواع الراتنج، المعروف بالحوجري. وفي الصيف يحوّل ضباب الخريف الموسمي التلال إلى اللون الأخضر.',k:'مرحبًا! أنا ظفار في عُمان. تلالي الصخرية موطن أجمل أشجار الدموع. وفي الصيف يحوّلني ضباب سحري إلى اللون الأخضر!'},
+ hadr:{name:'حضرموت، اليمن',note:'تضم أودية شرق اليمن أشجارًا برية من هذه الشجرة. ولقرون خرج الراتنج من هنا مع قوافل الجمال.',s:'أودية جافة في شرق اليمن تنمو فيها أشجار لبان برية. انطلقت منها قوافل الجمال لقرون.',k:'تنمو أشجار الدموع في أوديتي الجافة أيضًا. قديمًا كانت الجمال تحمل الدموع من هنا!'},
+ som:{name:'مرتفعات شمال الصومال',note:'بِيع راتنج هذه المنطقة طويلًا باسم B. carterii، وهو اسم تدمجه جهات كثيرة الآن في B. sacra.',s:'تنمو أشجار اللبان أيضًا في المرتفعات الصخرية شمال الصومال.',k:'مرحبًا من شمال الصومال! تنمو أشجار الدموع على تلالي الصخرية أيضًا.'},
+ soc:{name:'سقطرى، اليمن',note:'جزيرة موطن لأقارب متوطّنة مثل Boswellia socotrana. هي أنواع مستقلة، وتُعرض للسياق.',s:'جزيرة لها أقاربها الخاصة من شجرة اللبان. هي أنواع مختلفة وتُعرض للمقارنة.',k:'سقطرى جزيرة فيها أشجار من العائلة. ليست الشجرة نفسها، لكنها من الأقارب!'},
+ rori:{name:'خور روري (سمهرم)',note:'بلدة ميناء قديمة على ساحل ظفار، ونقطة لشحن الراتنج.',s:'ميناء قديم على ساحل ظفار كان الراتنج يُحمَّل فيه على السفن.',k:'ميناء قديم قفز منه اللبان إلى السفن!'},
+ shisr:{name:'واحة شصر',note:'واحة صحراوية على الطريق، تُربط غالبًا بمدينة أوبار الأسطورية.',s:'واحة صحراوية على طريق التجارة. يربطها بعض الناس بمدينة أوبار الأسطورية.',k:'محطة ماء في الصحراء للجمال العطشى. يقول البعض إن مدينة ضائعة اسمها أوبار كانت قريبة من هنا!'},
+ najran:{name:'نجران',note:'محطة قوافل في جنوب غرب الجزيرة العربية على الطريق شمالًا.',s:'محطة قوافل في جنوب غرب الجزيرة العربية على الطريق شمالًا.',k:'محطة استراحة للجمال المتعبة والتجار.'},
+ mecca:{name:'منطقة مكة المكرمة',note:'مركز تجاري في غرب الجزيرة العربية على جانب البحر الأحمر من الطريق.',s:'بلدة تجارية نشطة قرب البحر الأحمر على الطريق شمالًا.',k:'مدينة تجارية نشطة قرب البحر الأحمر.'},
+ petra:{name:'البتراء',note:'مدينة نبطية كانت تفرض الضرائب على قوافل البخور وتحوّل مسارها.',s:'مدينة منحوتة في الصخر كان التجار يدفعون فيها رسومًا عند مرور القوافل.',k:'مدينة منحوتة في صخر وردي! توقّف هنا التجار.'},
+ gaza:{name:'غزة',note:'نهاية الطريق البري على البحر المتوسط، حيث التقت البضائع بالتجارة البحرية.',s:'نهاية الطريق البري، حيث التقت البضائع بالسفن على البحر المتوسط.',k:'نهاية طريق الجمال! حملت السفن اللبان من هنا عبر البحر.'}
+};
+const ARLB={'Arabian Sea':'بحر العرب','Red Sea':'البحر الأحمر','Persian Gulf':'الخليج العربي','Gulf of Aden':'خليج عدن','Gulf of Oman':'خليج عُمان','Mediterranean Sea':'البحر الأبيض المتوسط','Indian Ocean':'المحيط الهندي',
+ 'SAUDI ARABIA':'السعودية','YEMEN':'اليمن','OMAN':'عُمان','UAE':'الإمارات','SOMALIA':'الصومال','ETHIOPIA':'إثيوبيا','ERITREA':'إريتريا','SUDAN':'السودان','EGYPT':'مصر','JORDAN':'الأردن','IRAQ':'العراق','SYRIA':'سوريا','IRAN':'إيران','EMPTY QUARTER':'الربع الخالي',
+ 'Dhofar':'ظفار','Hadramawt':'حضرموت','N. Somalia':'شمال الصومال','Socotra':'سقطرى','Khor Rori':'خور روري','Shisr':'شصر','Najran':'نجران','Makkah':'مكة','Petra':'البتراء','Gaza':'غزة'};
+
+const pn=p=>lang==='ar'?PAR[p.id].name:p.name;
+const routeIds=['rori','shisr','najran','mecca','petra','gaza'];
+const kindCol={core:0xf2bb4b,rel:0xc9a8ff,trade:0xffffff};
+
+const gCanvas=$('#globe');
+const gR=new THREE.WebGLRenderer({canvas:gCanvas,antialias:true,alpha:true});
+gR.setPixelRatio(Math.min(devicePixelRatio||1,2));
+const gS=new THREE.Scene();
+const gCam=new THREE.PerspectiveCamera(32,1,.1,50);
+const homeZ=c=>1+Math.max(.70/c.aspect,.77);
+const tgt={x:0,y:0,z:2.4};let moved=false;
+const setDist=c=>{if(!moved){tgt.z=homeZ(c);c.position.z=tgt.z;}};
+setDist(gCam);
+const globe=new THREE.Group();gS.add(globe);
+
+// dark core so back-side dots stay hidden
+const seaMat=new THREE.MeshBasicMaterial({color:0x0e5aa7});
+globe.add(new THREE.Mesh(new THREE.SphereGeometry(.985,48,48),seaMat));
+
+// land from rough polygons
+const polys=[
+ [[-17,21],[-17,14],[-12,7],[-8,4.5],[5,5],[9,4],[10,-2],[13,-10],[12,-18],[15,-27],[18,-34],[25,-34],[32,-28],[35,-22],[40,-15],[40,-10],[39,-5],[41,-2],[43,.5],[46,2.5],[48.5,5],[49.8,7],[50.9,10],[51.2,11.8],[49,11.3],[47,11.2],[45,10.4],[43.2,11.6],[42.6,12.5],[41.5,13.8],[39.7,15.4],[38.5,18],[37.2,21],[36,23.5],[34,27],[32.6,29.9],[32,31.3],[25,32],[20,31],[10,34],[10,37],[0,36],[-6,35],[-10,30]],
+ [[34.2,27.8],[35,28.5],[36.6,26],[37.5,24.5],[39,22],[39.2,21.4],[40.5,19],[41.7,17],[42.7,15.5],[43.3,13],[43.1,12.7],[45,12.9],[47,13.6],[49,14.4],[51,15.2],[52.2,15.9],[53.5,16.7],[54.7,17],[55.5,17.6],[56.6,18.5],[57.7,19.7],[58.5,20.4],[59.3,21.4],[59.8,22.5],[58.6,23.6],[57.5,23.8],[56.3,24.9],[56.4,26.3],[55.3,25.3],[54.4,24.4],[52.5,24.2],[51.6,24.6],[51.2,25.9],[50.1,26.4],[49.7,26.9],[48.4,28],[48,29.3],[47.5,30],[44,33],[40,35],[36,36],[35.5,33],[34.7,31.3],[34.3,29.5]],
+ [[-9,37],[-9,43],[-2,44],[-5,48],[2,51],[8,54],[10,57],[12,55],[20,55],[24,60],[30,60],[30,70],[60,70],[100,77],[140,72],[180,68],[180,62],[160,58],[140,52],[135,43],[128,39],[126,35],[122,40],[121,31],[120,23],[108,21],[106,10],[100,13],[103,1],[98,8],[97,17],[92,22],[88,22],[80,15],[77,8],[73,17],[70,21],[67,25],[62,25.2],[58,25.6],[56.3,27],[54,26.6],[51.5,27.9],[50,30],[48.5,30.3],[44,33],[40,34.6],[36,36.2],[28,36.5],[26,40],[23,38],[19,41],[13,45],[16,40],[8,44],[3,43]],
+ [[44,-12],[50,-15],[50,-25],[45,-25],[43,-20]],
+ [[-125,48],[-95,60],[-70,60],[-55,50],[-70,42],[-80,30],[-97,26],[-105,22],[-118,32]],
+ [[-80,10],[-60,10],[-35,-6],[-40,-22],[-58,-38],[-70,-52],[-75,-30],[-80,-5]]
+];
+const lc=document.createElement('canvas');lc.width=720;lc.height=360;
+const lx=lc.getContext('2d');lx.fillStyle='#fff';
+polys.forEach(p=>{lx.beginPath();p.forEach((q,i)=>{const x=(q[0]+180)*2,y=(90-q[1])*2;i?lx.lineTo(x,y):lx.moveTo(x,y);});lx.closePath();lx.fill();});
+const px=lx.getImageData(0,0,720,360).data;
+const pts=[];
+for(let lat=-62;lat<=80;lat+=.7){const dl=.7/Math.max(.2,Math.cos(lat*D2R));
+  for(let lon=-180;lon<180;lon+=dl){const x=Math.floor((lon+180)*2),y=Math.floor((90-lat)*2);
+    if(px[(y*720+x)*4+3]>128){const v=ll(lat,lon,1.001);pts.push(v.x,v.y,v.z);}}}
+const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.Float32BufferAttribute(pts,3));
+const landMat=new THREE.PointsMaterial({color:0x4ade80,size:.0085,sizeAttenuation:true,transparent:true,opacity:1});
+globe.add(new THREE.Points(pg,landMat));
+
+// graticule every 5 degrees
+const grat=new THREE.Group();
+const gm=new THREE.LineBasicMaterial({color:0x9fd0ff,transparent:true,opacity:.22});
+for(let lat=-60;lat<=80;lat+=5){const a=[];for(let i=0;i<=120;i++)a.push(ll(lat,i/120*360,1.002));grat.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(a),gm));}
+for(let lon=0;lon<360;lon+=5){const a=[];for(let i=0;i<=60;i++)a.push(ll(-80+i/60*160,lon,1.002));grat.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(a),gm));}
+globe.add(grat);
+
+// atmosphere
+gS.add(new THREE.Mesh(new THREE.SphereGeometry(1.14,48,48),new THREE.ShaderMaterial({
+ transparent:true,side:THREE.BackSide,blending:THREE.AdditiveBlending,depthWrite:false,
+ vertexShader:'varying vec3 n;void main(){n=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+ fragmentShader:'varying vec3 n;void main(){float i=pow(.72-dot(n,vec3(0.,0.,1.)),3.);gl_FragColor=vec4(.3,.9,1.,1.)*i*1.3;}'})));
+
+// range glow zones
+const zones=[['dhofar',1.3,0xf2bb4b],['hadr',2.2,0xf2bb4b],['som',1.9,0xf2bb4b],['soc',1.0,0xc9a8ff]];
+const zoneObjs=[];
+zones.forEach(z=>{const p=places.find(q=>q.id===z[0]);
+  const c=new THREE.Mesh(new THREE.CircleGeometry(z[1]*D2R,48),new THREE.MeshBasicMaterial({color:z[2],transparent:true,opacity:.3,depthWrite:false,side:THREE.DoubleSide}));
+  c.position.copy(ll(p.lat,p.lon,1.003));c.lookAt(c.position.clone().multiplyScalar(2));globe.add(c);
+  const e=[];for(let i=0;i<=64;i++){const a=i/64*TAU;e.push(new THREE.Vector3(Math.cos(a)*z[1]*D2R,Math.sin(a)*z[1]*D2R,0));}
+  const ln=new THREE.Line(new THREE.BufferGeometry().setFromPoints(e),new THREE.LineBasicMaterial({color:z[2],transparent:true,opacity:.9}));
+  ln.position.copy(c.position);ln.quaternion.copy(c.quaternion);globe.add(ln);
+  zoneObjs.push({id:z[0],rel:z[0]==='soc',c,ln});});
+const mist=new THREE.Mesh(new THREE.CircleGeometry(3.2*D2R,48),new THREE.MeshBasicMaterial({color:0x9fe8ff,transparent:true,opacity:0,depthWrite:false,side:THREE.DoubleSide}));
+{const p=places[0];mist.position.copy(ll(p.lat,p.lon,1.002));mist.lookAt(mist.position.clone().multiplyScalar(2));globe.add(mist);}
+// markers
+const markers=new THREE.Group();globe.add(markers);
+const hit=[],rings=[];
+places.forEach((p,i)=>{
+  const pos=ll(p.lat,p.lon,1.006);
+  const m=new THREE.Mesh(new THREE.SphereGeometry(p.kind==='core'?.022:.016,16,16),new THREE.MeshBasicMaterial({color:kindCol[p.kind]}));
+  m.position.copy(pos);m.userData.p=p;markers.add(m);hit.push(m);
+  const r=new THREE.Mesh(new THREE.RingGeometry(.028,.033,40),new THREE.MeshBasicMaterial({color:kindCol[p.kind],transparent:true,side:THREE.DoubleSide,depthWrite:false}));
+  r.position.copy(ll(p.lat,p.lon,1.004));r.lookAt(r.position.clone().multiplyScalar(2));r.userData.ph=i*.13;markers.add(r);rings.push(r);
+  p.mesh=m;
+});
+
+// route
+const route=new THREE.Group();globe.add(route);
+const path=[];
+for(let i=0;i<routeIds.length-1;i++){
+  const a=ll(places.find(q=>q.id===routeIds[i]).lat,places.find(q=>q.id===routeIds[i]).lon,1);
+  const b=ll(places.find(q=>q.id===routeIds[i+1]).lat,places.find(q=>q.id===routeIds[i+1]).lon,1);
+  for(let k=0;k<=28;k++){const t=k/28;path.push(a.clone().lerp(b,t).normalize().multiplyScalar(1.004+.045*Math.sin(Math.PI*t)));}
+}
+route.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(path),new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.9})));
+const caravan=new THREE.Mesh(new THREE.SphereGeometry(.014,12,12),new THREE.MeshBasicMaterial({color:0xffffff}));route.add(caravan);
+
+// labels
+const gl=$('#gLabels'),LB=[];
+function addLB(txt,lat,lon,cls,anc){const e=document.createElement('div');e.className='lb '+cls;e.textContent=txt;gl.appendChild(e);LB.push({e,v:ll(lat,lon,1.01),anc:anc||'c',pl:cls.indexOf('pl')===0,prio:cls.indexOf('pl')===0?(cls.indexOf('trade')>0?2:1):(cls==='land'?3:4),w:0,h:0,id:'',en:txt});}
+[['Arabian Sea',15.2,61.5,'sea'],['Red Sea',18.5,38.9,'sea'],['Persian Gulf',27.3,51.2,'sea'],['Gulf of Aden',12.2,47.2,'sea'],['Gulf of Oman',24.7,58.6,'sea'],['Mediterranean Sea',33.6,29.5,'sea'],['Indian Ocean',6.2,57,'sea'],
+ ['SAUDI ARABIA',24.5,44.5,'land'],['YEMEN',15.6,46.2,'land'],['OMAN',20.5,56.5,'land'],['UAE',23.7,54.2,'land'],['SOMALIA',6.8,46.5,'land'],['ETHIOPIA',8.8,39.5,'land'],['ERITREA',15.9,38.9,'land'],['SUDAN',16.8,31.5,'land'],['EGYPT',26.8,30.6,'land'],['JORDAN',31.2,38.6,'land'],['IRAQ',32.8,43.5,'land'],['SYRIA',35.2,38.3,'land'],['IRAN',31.5,53.5,'land'],['EMPTY QUARTER',20.3,50.8,'land']
+].forEach(g=>addLB(g[0],g[1],g[2],g[3]));
+const shortN={dhofar:'Dhofar',hadr:'Hadramawt',som:'N. Somalia',soc:'Socotra',rori:'Khor Rori',shisr:'Shisr',najran:'Najran',mecca:'Makkah',petra:'Petra',gaza:'Gaza'};
+const ancN={dhofar:'l',hadr:'b',som:'b',soc:'r',rori:'r',shisr:'t',najran:'b',mecca:'r',petra:'r',gaza:'l'};
+places.forEach(p=>{addLB(shortN[p.id],p.lat,p.lon,'pl '+p.kind,ancN[p.id]);LB[LB.length-1].id=p.id;});
+let selId='dhofar';
+const tmpV=new THREE.Vector3();
+function updLB(){
+  const w=gCanvas.clientWidth,h=gCanvas.clientHeight,cp=gCam.position;
+  const cr=gCanvas.getBoundingClientRect(),pd=document.querySelector('.pad').getBoundingClientRect();
+  const blocked=[];
+  if(pd.width&&pd.top<cr.bottom&&pd.bottom>cr.top)blocked.push([pd.left-cr.left-6,pd.top-cr.top-6,pd.right-cr.left+6,pd.bottom-cr.top+6]);
+  const vis=[];
+  LB.forEach(l=>{
+    tmpV.copy(l.v).applyMatrix4(globe.matrixWorld);
+    const op=Math.max(0,Math.min(1,(tmpV.dot(cp)-1.02)/.4));
+    if(op<=0||(l.pl&&cp.z>3.3)){l.e.style.display='none';return;}
+    tmpV.project(gCam);
+    vis.push({l,op,x:(tmpV.x*.5+.5)*w,y:(-tmpV.y*.5+.5)*h});
+  });
+  const key=it=>it.l.id&&it.l.id===selId?0:it.l.prio;
+  vis.sort((a,b)=>key(a)-key(b));
+  vis.forEach(it=>{
+    const l=it.l,g=8;
+    l.e.style.display='';
+    if(!l.w){l.w=l.e.offsetWidth;l.h=l.e.offsetHeight;}
+    let x0,y0;
+    if(l.anc==='l'){x0=it.x-g-l.w;y0=it.y-l.h/2;}
+    else if(l.anc==='r'){x0=it.x+g;y0=it.y-l.h/2;}
+    else if(l.anc==='t'){x0=it.x-l.w/2;y0=it.y-g-l.h;}
+    else if(l.anc==='b'){x0=it.x-l.w/2;y0=it.y+g;}
+    else{x0=it.x-l.w/2;y0=it.y-l.h/2;}
+    const r=[x0-7,y0-5,x0+l.w+7,y0+l.h+5];
+    const hit=r[0]<2||r[1]<2||r[2]>w-2||r[3]>h-2||blocked.some(b=>r[0]<b[2]&&r[2]>b[0]&&r[1]<b[3]&&r[3]>b[1]);
+    if(hit){l.e.style.display='none';return;}
+    blocked.push(r);
+    l.e.style.opacity=it.op;
+    l.e.style.transform='translate('+x0.toFixed(1)+'px,'+y0.toFixed(1)+'px)';
+  });
+}
+const resetLB=()=>LB.forEach(l=>{l.w=0;});
+addEventListener('resize',resetLB);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(resetLB);
+// selection + interaction
+const gst={vx:0,focus:null};
+const pl=$('#placeList');
+places.forEach(p=>{const b=document.createElement('button');b.className='chip';b.textContent=p.name;b.setAttribute('aria-pressed','false');b.dataset.id=p.id;b.onclick=()=>select(p.id,true);pl.appendChild(b);});
+function select(id,go){
+  selId=id;
+  const p=places.find(q=>q.id===id);if(!p)return;
+  $('#sName').textContent=pn(p);
+  $('#sCoords').textContent=Math.abs(p.lat).toFixed(2)+'°'+DC(p.lat>=0?'N':'S')+' '+Math.abs(p.lon).toFixed(2)+'°'+DC(p.lon>=0?'E':'W');
+  {const A=lang==='ar'?PAR[p.id]:p;$('#sNote').textContent=mode==='kids'?A.k:mode==='simple'?A.s:A.note;}$('#gSel').textContent=pn(p);seenPl[id]=1;if(badgesReady)checkBadges();
+  pl.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.id===id)));
+  places.forEach(q=>q.mesh.scale.setScalar(q===p?1.7:1));
+  if(go){const v=ll(p.lat,p.lon,1).applyQuaternion(globe.quaternion);moved=true;tgt.x=clampP(v.x);tgt.y=clampP(v.y);tgt.z=Math.min(tgt.z,2.0);}
+}
+const ray=new THREE.Raycaster(),ndc=new THREE.Vector2();
+gst.onTap=e=>{
+  const r=gCanvas.getBoundingClientRect();
+  ndc.set(((e.clientX-r.left)/r.width)*2-1,-((e.clientY-r.top)/r.height)*2+1);
+  ray.setFromCamera(ndc,gCam);
+  const h=ray.intersectObjects(hit)[0];
+  if(h)select(h.object.userData.p.id,true);
+};
+const clampP=v=>Math.max(-1.3,Math.min(1.3,v));
+const zoomBy=f=>{moved=true;tgt.z=Math.max(1.25,Math.min(4.2,tgt.z*f));};
+const panStep=(dx,dy)=>{moved=true;const s=.14*Math.max(.4,tgt.z-.9);tgt.x=clampP(tgt.x+dx*s);tgt.y=clampP(tgt.y+dy*s);};
+const goHome=()=>{tgt.x=0;tgt.y=0;tgt.z=homeZ(gCam);moved=false;};
+(function(){
+  let dn=false,lx=0,ly=0,mv=0;
+  gCanvas.addEventListener('pointerdown',e=>{dn=true;lx=e.clientX;ly=e.clientY;mv=0;try{gCanvas.setPointerCapture(e.pointerId)}catch(_){}});
+  gCanvas.addEventListener('pointermove',e=>{if(!dn)return;const dx=e.clientX-lx,dy=e.clientY-ly;lx=e.clientX;ly=e.clientY;mv+=Math.abs(dx)+Math.abs(dy);
+    if(mv>4){gCanvas.classList.add('drag');moved=true;const k=2*Math.tan(gCam.fov*D2R/2)*Math.max(.3,gCam.position.z-1)/gCanvas.clientHeight;tgt.x=clampP(tgt.x-dx*k);tgt.y=clampP(tgt.y+dy*k);}});
+  gCanvas.addEventListener('pointerup',e=>{if(!dn)return;dn=false;gCanvas.classList.remove('drag');if(mv<5)gst.onTap(e);});
+  gCanvas.addEventListener('pointercancel',()=>{dn=false;gCanvas.classList.remove('drag');});
+  gCanvas.addEventListener('wheel',e=>{e.preventDefault();zoomBy(Math.exp(e.deltaY*.0015));},{passive:false});
+  $('#zIn').onclick=()=>zoomBy(.8);$('#zOut').onclick=()=>zoomBy(1.25);
+  $('#pU').onclick=()=>panStep(0,1);$('#pD').onclick=()=>panStep(0,-1);$('#pL').onclick=()=>panStep(-1,0);$('#pR').onclick=()=>panStep(1,0);
+  $('#pH').onclick=goHome;
+})();
+globe.rotation.set(21*D2R,-44.5*D2R,0);
+select('dhofar');
+$('#tMark').onchange=e=>{markers.visible=e.target.checked};
+$('#tRoute').onchange=e=>{route.visible=e.target.checked};
+$('#tGrid').onchange=e=>{grat.visible=e.target.checked};
+$('#tLabels').onchange=e=>{gl.style.display=e.target.checked?'':'none'};
+
+/* ---------- TREE ---------- */
+const tCanvas=$('#tree');
+const tR=new THREE.WebGLRenderer({canvas:tCanvas,antialias:true,alpha:true});
+tR.setPixelRatio(Math.min(devicePixelRatio||1,2));tR.localClippingEnabled=true;
+const tS=new THREE.Scene();
+const tCam=new THREE.PerspectiveCamera(38,1,.1,60);
+const tDist=c=>{const k=1/Math.min(1,c.aspect/1.2);c.position.set(2.6*k,2.4*k+.4,6.2*k);c.lookAt(0,1.5,0);};
+tDist(tCam);
+const tree=new THREE.Group();tS.add(tree);
+tree.rotation.y=-.5;
+const clip=new THREE.Plane(new THREE.Vector3(-1,0,0),.4);
+const P={bark:[],canal:[],xylem:[],roots:[],leaves:[],resin:[]};
+const layers={};
+function M(kind,o){
+  o=o||{};
+  const m=o.line?new THREE.LineBasicMaterial({transparent:true,opacity:o.op||.8,clippingPlanes:[clip]})
+    :new THREE.MeshBasicMaterial({transparent:true,opacity:o.op||.3,side:THREE.DoubleSide,wireframe:!!o.wire,depthWrite:false,blending:o.add?THREE.AdditiveBlending:THREE.NormalBlending,clippingPlanes:[clip]});
+  m.userData.k=kind;P[kind].push(m);return m;
+}
+function lay(k){return layers[k]||(layers[k]=new THREE.Group());}
+const TOP=2.3,H=2.3,trunkR=y=>.82-.27*(y/H);
+// trunk
+const tg=new THREE.CylinderGeometry(.55,.82,H,44,16,true);
+{const a=tg.attributes.position;for(let i=0;i<a.count;i++){const x=a.getX(i),y=a.getY(i),z=a.getZ(i);
+  const b=1+.07*Math.sin(y*5+Math.atan2(z,x)*3)+.04*Math.sin(y*11+Math.atan2(z,x)*7);a.setXYZ(i,x*b,y,z*b);}tg.computeVertexNormals();}
+const barkA=new THREE.Mesh(tg,M('bark',{op:.16,add:true}));
+const barkB=new THREE.Mesh(tg,M('bark',{wire:true,op:.55,add:true}));
+barkA.position.y=barkB.position.y=H/2;lay('bark').add(barkA,barkB);
+// cambium shell + canals
+const camb=new THREE.Mesh(new THREE.CylinderGeometry(.47,.66,H*.98,36,1,true),M('canal',{op:.12,add:true}));
+camb.position.y=H/2;lay('canal').add(camb);
+for(let i=0;i<18;i++){
+  const a=i/18*TAU,ph=Math.random()*6,pts3=[];
+  for(let k=0;k<=40;k++){const y=.05+k/40*(H-.1),r=trunkR(y)*.74+.02*Math.sin(y*9+ph);
+    const an=a+.12*Math.sin(y*3+ph);pts3.push(new THREE.Vector3(Math.cos(an)*r,y,Math.sin(an)*r));}
+  lay('canal').add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts3),M('canal',{line:true,op:.9})));
+}
+// xylem
+const xy=new THREE.CylinderGeometry(.24,.4,H,20,8,true);
+const xA=new THREE.Mesh(xy,M('xylem',{op:.22,add:true})),xB=new THREE.Mesh(xy,M('xylem',{wire:true,op:.6,add:true}));
+xA.position.y=xB.position.y=H/2;lay('xylem').add(xA,xB);
+// branches + leaves
+const Y=new THREE.Vector3(0,1,0),tips=[];
+for(let i=0;i<5;i++){
+  const a=i/5*TAU+.4,d=new THREE.Vector3(Math.cos(a)*.85,.7+(i%2)*.15,Math.sin(a)*.85).normalize(),len=1.25+(i%3)*.15;
+  const g=new THREE.CylinderGeometry(.06,.13,len,10,3,true);
+  const br=new THREE.Mesh(g,M('bark',{wire:true,op:.7,add:true}));
+  br.quaternion.setFromUnitVectors(Y,d);br.position.set(0,TOP-.05,0).addScaledVector(d,len/2);
+  lay('bark').add(br);tips.push(new THREE.Vector3(0,TOP-.05,0).addScaledVector(d,len));
+  // twig
+  const d2=d.clone().applyAxisAngle(new THREE.Vector3(0,1,0),.7).add(new THREE.Vector3(0,.2,0)).normalize();
+  const s0=new THREE.Vector3(0,TOP-.05,0).addScaledVector(d,len*.6),tw=new THREE.Mesh(new THREE.CylinderGeometry(.03,.06,.6,8,1,true),M('bark',{wire:true,op:.6,add:true}));
+  tw.quaternion.setFromUnitVectors(Y,d2);tw.position.copy(s0).addScaledVector(d2,.3);lay('bark').add(tw);tips.push(s0.clone().addScaledVector(d2,.6));
+}
+const LN=tips.length*60,leafBase=[];
+const leafMesh=new THREE.InstancedMesh(new THREE.PlaneGeometry(.2,.07),M('leaves',{op:.75,add:true}),LN);
+tips.forEach(t=>{for(let k=0;k<60;k++){
+  const o=new THREE.Vector3(Math.random()-.5,Math.random()-.4,Math.random()-.5).multiplyScalar(.95);
+  leafBase.push({p:t.clone().add(o),r:new THREE.Euler(Math.random()*TAU,Math.random()*TAU,Math.random()*TAU)});}});
+lay('leaves').add(leafMesh);
+const dm=new THREE.Object3D();
+function setLeaves(f){
+  leafBase.forEach((l,i)=>{dm.position.copy(l.p);dm.rotation.copy(l.r);dm.scale.setScalar(Math.max(.0001,f));dm.updateMatrix();leafMesh.setMatrixAt(i,dm.matrix);});
+  leafMesh.instanceMatrix.needsUpdate=true;
+}
+// roots
+for(let i=0;i<7;i++){
+  const a=i/7*TAU+.3,c=[];
+  for(let k=0;k<=8;k++){const t=k/8;c.push(new THREE.Vector3(Math.cos(a+t*.5)*(.15+t*1.7),-t*.95-Math.sin(t*3)*.1,Math.sin(a+t*.5)*(.15+t*1.7)));}
+  lay('roots').add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(new THREE.CatmullRomCurve3(c).getPoints(30)),M('roots',{line:true,op:.8})));
+}
+// ground rings
+const ground=new THREE.Group();
+[1,1.8,2.6,3.4].forEach(r=>{const a=[];for(let i=0;i<=96;i++)a.push(new THREE.Vector3(Math.cos(i/96*TAU)*r,0,Math.sin(i/96*TAU)*r));
+  const m=new THREE.LineBasicMaterial({transparent:true,opacity:.35});m.userData.ground=1;ground.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(a),m));});
+tree.add(ground);
+// tap wound + resin
+const th=125*D2R,tr=.66,drops=[];
+const wound=new THREE.Mesh(new THREE.BoxGeometry(.22,.4,.05),M('resin',{op:.5,add:true}));
+wound.position.set(Math.cos(th)*tr,1.8,Math.sin(th)*tr);wound.lookAt(wound.position.x*2,1.8,wound.position.z*2);lay('resin').add(wound);
+for(let i=0;i<7;i++){
+  const m=new THREE.Mesh(new THREE.SphereGeometry(.06,14,14),M('resin',{op:.95,add:true}));
+  const a=th+(Math.random()-.5)*.22,y=1.62-i*.17;
+  m.position.set(Math.cos(a)*(trunkR(y)+.015),y,Math.sin(a)*(trunkR(y)+.015));m.userData.i=i;
+  lay('resin').add(m);drops.push(m);
+}
+Object.values(layers).forEach(g=>tree.add(g));
+
+// palettes
+const BANDS=[
+ {id:'vis',name:'Visible',acc:'#f2bb4b',bark:0xd9a441,canal:0x45e0ff,xylem:0xf3e3b5,leaves:0x7dffb0,roots:0xb98a4a,resin:0xffd36b,ground:0x2b6f86},
+ {id:'nir',name:'Near-infrared',acc:'#ff6fe0',bark:0xff5ad9,canal:0xffffff,xylem:0xc17bff,leaves:0xff9cf0,roots:0xa04cff,resin:0xffffff,ground:0x7a2f8f},
+ {id:'therm',name:'Thermal',acc:'#ff8a3d',bark:0xff6a1a,canal:0xffe14a,xylem:0xc41e1e,leaves:0x6a3bf0,roots:0x8a1030,resin:0xfff3a0,ground:0x4a1f6e},
+ {id:'uv',name:'UV fluorescence',acc:'#a7ff4a',bark:0x6a5cff,canal:0x38f2ff,xylem:0x9a7dff,leaves:0x3fffb4,roots:0x4c3fd1,resin:0xc6ff3d,ground:0x3a2fb0},
+ {id:'xray',name:'X-ray',acc:'#bcd6ff',bark:0x8fb7ff,canal:0xffffff,xylem:0xdbe8ff,leaves:0x5f86d6,roots:0x6f95e0,resin:0xffffff,ground:0x3f5f9a}
+];
+const CHEM=[
+ {id:'ba',name:'Boswellic acids',v:.88,tint:0xffa24a},
+ {id:'ie',name:'Incensole acetate',v:.56,tint:0xff6fb0},
+ {id:'ap',name:'α-Pinene',v:.72,tint:0x7dffb0},
+ {id:'li',name:'Limonene',v:.34,tint:0xf6ff6a},
+ {id:'oa',name:'Octyl acetate',v:.46,tint:0x8ab4ff}
+];
+let band=BANDS[0],chem=CHEM[0];
+const I18N={
+ eyebrow:['Holographic 6D multi-spectral anatomical engine','Simplified version · A holographic map and tree you can explore','Kids view · Explore the golden-tear tree!'],
+ dhead:['','What do 3D, 4D, 5D and 6D mean?','What do 3D, 4D, 5D and 6D mean?'],
+ dsub:['','Each number adds one more kind of information to the map and the tree. Try them one at a time.','Each number unlocks a new power for the map and the tree. Try them one by one!'],
+ d3t:['','3D · Place','3D · Look'],d3:['','Three directions: east–west, north–south, and how far you zoom in.','Look at the map from left to right, up and down, and zoom in close!'],
+ d4t:['','4D · Time','4D · Seasons'],d4:['','Adds time. Slide through the months to see the summer mist and harvest time.','Adds time! Slide through the months and watch the magic mist and harvest glow.'],
+ d5t:['','5D · Light','5D · Colours'],d5:['','Adds a special camera. See the world in heat, ultraviolet or X-ray colours.','Put on super-vision goggles and see heat, glow-in-the-dark and X-ray colours!'],
+ d6t:['','6D · Contents','6D · Secrets'],d6:['','Adds what the resin is made of. Pick an ingredient to light it up.','Peek at the ingredients inside a tear. Pick one to make it glow!'],
+ t1:['Layer 01 · Geo globe','Part 1 · The map','Part 1 · The magic map'],
+ h1s:['Where the frankincense tree grows','Where frankincense trees grow','Where do the tear trees live?'],
+ sub1:['The globe stays fixed and never spins. Scroll or use + and − to zoom, drag or use the arrows to move across the map, and pick 3D to 6D to add time, spectral band and chemistry.','This map stays still so it is easy to read. Zoom with + and −, or scroll. Drag to move around. Then press 3D, 4D, 5D and 6D to add one new kind of information at a time.','Zoom with + and −. Drag the map around. Then press 3D, 4D, 5D and 6D to unlock a new power each time!'],
+ gl1:['1 · X lon','1 · East–west','1 · Left–right'],gl2:['2 · Y lat','2 · North–south','2 · Up–down'],gl3:['3 · Z zoom','3 · Zoom','3 · Zoom'],
+ gl4:['4 · T season','4 · Time of year','4 · Season'],gl5:['5 · λ band','5 · Light type','5 · Super-vision'],gl6:['6 · C chem','6 · Ingredient','6 · Ingredient'],
+ tl1:['1 · X yaw','1 · Turn','1 · Turn'],tl2:['2 · Y pitch','2 · Tilt','2 · Tilt'],tl3:['3 · Z cut','3 · Slice','3 · Slice'],
+ tl4:['4 · T season','4 · Time of year','4 · Season'],tl5:['5 · λ band','5 · Light type','5 · Super-vision'],tl6:['6 · C chem','6 · Ingredient','6 · Ingredient'],
+ hudSel:['Selected','Chosen place','You picked'],
+ dimH:['Dimensions','Add layers','Power-ups'],seasonL:['Season','Time of year','Month'],seasonL2:['Season','Time of year','Month'],
+ bandH:['Spectral band','Light type','Super-vision'],bandH2:['Spectral band','Light type','Super-vision'],
+ chemH:['Chemistry focus','What is inside the resin','Ingredients inside'],chemH2:['Chemistry focus','What is inside the resin','Ingredients inside'],
+ legH:['Legend','What the colours mean','Colour guide'],
+ lg1:['Boswellia sacra range (marker and glow zone)','Where frankincense trees grow (dot and glow)','Where tear trees live (dot and glow)'],
+ lg2:['Related Boswellia species (Socotra)','A related tree, on Socotra island','A cousin tree on Socotra island'],
+ lg3:['Incense route stop','A stop on the old trade road','A camel rest stop'],
+ lg4:['Overland incense route','The old trade road (Incense Route)','The camel road'],
+ lg5:['Land (green; recolours in 5D and 6D)','Land (changes colour in 5D and 6D)','Land (changes colour in 5D and 6D)'],
+ lg6:['Water (blue; recolours in 5D and 6D)','Water (changes colour in 5D and 6D)','Water (changes colour in 5D and 6D)'],
+ lg7:['Khareef monsoon mist (4D and up)','Summer mist (4D and up)','Magic mist (4D and up)'],
+ tg1:['Markers','Place dots','Place dots'],tg2:['Route','Trade road','Camel road'],tg3:['Graticule','Grid lines','Grid lines'],tg4:['Labels','Names','Names'],
+ selH:['Selected place','About this place','Meet this place'],plH:['Places','Pick a place','Pick a place'],
+ t2:['Layer 02 · Anatomical engine','Part 2 · The tree','Part 2 · The tear tree'],
+ h2b:['Inside the tree, in six dimensions','Look inside the tree','Peek inside the tear tree!'],
+ sub2:['A stylised Boswellia sacra. Slice it open, change the imaging band, and move through the year. The matrix under the model reads out all six axes.','A simple model of a frankincense tree. Turn it, slice it open, change the light type and slide through the year. The six boxes under it show what you are looking at.','Spin the tree! Slice it open! Change the super-vision and slide through the months. The six boxes show your powers.'],
+ lyH:['Anatomical layers','Parts of the tree','Tree parts'],
+ ly1:['Bark','Bark','Bark'],ly2:['Resin canals','Resin channels','Tear pipes'],ly3:['Xylem core','Wood core','Wood middle'],ly4:['Roots','Roots','Roots'],ly5:['Foliage','Leaves','Leaves'],ly6:['Tapping & resin','The cut and the resin','The cut and the tears'],
+ tdH:['Time and depth','Time and slice','Time and slice'],cutL:['Cutaway depth','Slice the trunk open','Slice the trunk open!'],
+ barsNote:['Bars show an illustrative relative profile for frankincense resin, not measured values.','These bars are an illustration, not real measurements.','These bars are just a picture to show the idea.'],
+ foot:['Geography is approximate and the land outline is stylised. Tree anatomy is a simplified teaching model.','The map and the tree are simplified drawings, so details are not exact.','The map and the tree are simple drawings, not exact.']
+};
+const BNAME={expert:['Visible','Near-infrared','Thermal','UV fluorescence','X-ray'],simple:['Normal light','Infrared','Heat view','UV glow','X-ray'],kids:['Normal eyes','Spy light','Heat goggles','Glow-in-the-dark','X-ray eyes']};
+const CNAME={expert:['Boswellic acids','Incensole acetate','α-Pinene','Limonene','Octyl acetate'],simple:['Resin acids','Incensole acetate','Pine scent (α-pinene)','Lemon scent (limonene)','Fruity scent (octyl acetate)'],kids:['Resin acids','Incensole','Pine smell','Lemon smell','Fruity smell']};
+const DIMCHIP={expert:['3D','4D','5D','6D'],simple:['3D Place','4D + Time','5D + Light','6D + Contents'],kids:['3D Look','4D Seasons','5D Colours','6D Secrets']};
+const DIMNOTES={
+ expert:{3:'Space only: longitude, latitude and zoom.',4:'Adds time: monsoon mist over Dhofar and a glow that grows in the tapping season.',5:'Adds the spectral band: land and water recolour with the imaging band.',6:'Adds chemistry: range zones take the tint of the chosen resin compound (illustrative).'},
+ simple:{3:'Just the map: where things are, and how far you zoom.',4:'Adds time. Pick a month to see the summer mist and when the resin is harvested.',5:'Adds a special light view. Land and water change colour, like seen through different cameras.',6:'Adds what the resin is made of. Pick an ingredient to tint the glowing tree zones. This is an illustration, not a measurement.'},
+ kids:{3:'Look at the map and zoom in and out!',4:'Pick a month! In summer a magic mist turns the hills green, and harvest time makes the tree zones glow.',5:'Put on super-vision goggles! The land and sea change colour like in a spy movie.',6:'Peek at the ingredients inside a tear! Each one gives the glow a new colour.'}
+};
+const PHM={
+ expert:['Dormant and leafless.','Dormant and leafless.','Bark loosens ahead of tapping.','Tapping window opens. Shallow cuts start the flow.','Resin beads at the cuts and hardens on the bark.','Late tapping. First leaf buds appear.','Monsoon mist (khareef) brings a rapid leaf flush.','Full canopy under khareef cloud.','Full canopy, slowing growth.','Leaves begin to drop.','Leaf drop continues.','Dormant again.'],
+ simple:['Resting. The tree has no leaves.','Resting. The tree has no leaves.','The bark starts to loosen before harvest.','Harvest season begins. Small cuts are made and resin starts to flow.','Resin collects at the cuts and hardens into tears.','Harvest ends. First buds appear.','The summer monsoon mist arrives and new leaves grow fast.','Full leaves under the mist.','Full leaves. Growth slows down.','Leaves start to fall.','Leaves keep falling.','Resting again.'],
+ kids:['Sleepy time! No leaves.','Still sleeping. No leaves.','The bark gets loose. Harvest is coming!','Harvest time! Little cuts make the tears flow.','Sticky drops turn into hard golden tears.','Harvest is over. Tiny buds pop out!','The magic mist comes and leaves grow fast!','Lots of green leaves in the mist.','Still green, but growing slower.','Leaves start to fall down.','More leaves fall.','Back to sleepy time.']
+};
+/* ---------- ARABIC TEXT ---------- */
+const AR_I18N={
+ eyebrow:['محرك تشريحي هولوغرافي سداسي الأبعاد متعدد الأطياف','النسخة المبسّطة · خريطة وشجرة هولوغرافية يمكنك استكشافها','وضع الأطفال · استكشف شجرة الدموع الذهبية!'],
+ dhead:['','ماذا تعني 3D و4D و5D و6D؟','ماذا تعني 3D و4D و5D و6D؟'],
+ dsub:['','كل رقم يضيف نوعًا جديدًا من المعلومات إلى الخريطة والشجرة. جرّبها واحدًا تلو الآخر.','كل رقم يفتح قوة جديدة للخريطة والشجرة. جرّبها واحدًا تلو الآخر!'],
+ d3t:['','3D · المكان','3D · النظر'],d3:['','ثلاثة اتجاهات: شرق–غرب، شمال–جنوب، ومقدار التقريب.','انظر إلى الخريطة من اليسار إلى اليمين ومن الأعلى إلى الأسفل، وقرّب الصورة!'],
+ d4t:['','4D · الزمن','4D · الفصول'],d4:['','يضيف الزمن. حرّك الأشهر لترى ضباب الصيف وموسم الحصاد.','يضيف الزمن! حرّك الأشهر وشاهد الضباب السحري ووهج الحصاد.'],
+ d5t:['','5D · الضوء','5D · الألوان'],d5:['','يضيف كاميرا خاصة. شاهد العالم بألوان الحرارة أو الأشعة فوق البنفسجية أو الأشعة السينية.','ارتدِ نظارات الرؤية الخارقة وشاهد ألوان الحرارة والتوهّج في الظلام والأشعة السينية!'],
+ d6t:['','6D · المحتويات','6D · الأسرار'],d6:['','يضيف مما يتكوّن اللبان. اختر مكوّنًا ليضيء.','انظر إلى المكوّنات داخل الدمعة. اختر واحدًا ليتوهّج!'],
+ t1:['الطبقة 01 · الكرة الجغرافية','الجزء 1 · الخريطة','الجزء 1 · الخريطة السحرية'],
+ h1s:['أين تنمو شجرة اللبان','أين تنمو أشجار اللبان','أين تعيش أشجار الدموع؟'],
+ sub1:['تبقى الكرة ثابتة ولا تدور. مرّر أو استخدم + و − للتقريب، واسحب أو استخدم الأسهم للتنقل في الخريطة، واختر من 3D إلى 6D لإضافة الزمن والنطاق الطيفي والكيمياء.','تبقى هذه الخريطة ثابتة لتسهل قراءتها. قرّب بـ + و −، أو مرّر العجلة. اسحب للتنقل. ثم اضغط 3D و4D و5D و6D لإضافة نوع جديد من المعلومات في كل مرة.','قرّب بـ + و −. اسحب الخريطة في كل اتجاه. ثم اضغط 3D و4D و5D و6D لتفتح قوة جديدة في كل مرة!'],
+ gl1:['1 · X خط الطول','1 · شرق–غرب','1 · يمين–يسار'],gl2:['2 · Y خط العرض','2 · شمال–جنوب','2 · أعلى–أسفل'],gl3:['3 · Z التقريب','3 · التقريب','3 · التقريب'],
+ gl4:['4 · T الموسم','4 · وقت السنة','4 · الفصل'],gl5:['5 · λ النطاق','5 · نوع الضوء','5 · الرؤية الخارقة'],gl6:['6 · C الكيمياء','6 · المكوّن','6 · المكوّن'],
+ tl1:['1 · X الدوران','1 · أدِر','1 · أدِر'],tl2:['2 · Y الميل','2 · أمِل','2 · أمِل'],tl3:['3 · Z القطع','3 · شريحة','3 · شريحة'],
+ tl4:['4 · T الموسم','4 · وقت السنة','4 · الفصل'],tl5:['5 · λ النطاق','5 · نوع الضوء','5 · الرؤية الخارقة'],tl6:['6 · C الكيمياء','6 · المكوّن','6 · المكوّن'],
+ hudSel:['المحدَّد','المكان المختار','اخترتَ'],
+ dimH:['الأبعاد','أضف طبقات','قوى إضافية'],seasonL:['الموسم','وقت السنة','الشهر'],seasonL2:['الموسم','وقت السنة','الشهر'],
+ bandH:['النطاق الطيفي','نوع الضوء','الرؤية الخارقة'],bandH2:['النطاق الطيفي','نوع الضوء','الرؤية الخارقة'],
+ chemH:['التركيز الكيميائي','ما بداخل اللبان','المكوّنات بالداخل'],chemH2:['التركيز الكيميائي','ما بداخل اللبان','المكوّنات بالداخل'],
+ legH:['دليل الرموز','معنى الألوان','دليل الألوان'],
+ lg1:['نطاق انتشار البوسويليا ساكرا (العلامة ومنطقة التوهّج)','أماكن نمو أشجار اللبان (نقطة وتوهّج)','أماكن عيش أشجار الدموع (نقطة وتوهّج)'],
+ lg2:['نوع بوسويليا قريب (سقطرى)','شجرة قريبة في جزيرة سقطرى','شجرة من العائلة في جزيرة سقطرى'],
+ lg3:['محطة على طريق البخور','محطة على طريق التجارة القديم','محطة استراحة للجمال'],
+ lg4:['طريق البخور البري','طريق التجارة القديم (طريق البخور)','طريق الجمال'],
+ lg5:['اليابسة (خضراء؛ يتغيّر لونها في 5D و6D)','اليابسة (يتغيّر لونها في 5D و6D)','اليابسة (يتغيّر لونها في 5D و6D)'],
+ lg6:['الماء (أزرق؛ يتغيّر لونه في 5D و6D)','الماء (يتغيّر لونه في 5D و6D)','الماء (يتغيّر لونه في 5D و6D)'],
+ lg7:['ضباب الخريف الموسمي (4D فما فوق)','ضباب الصيف (4D فما فوق)','الضباب السحري (4D فما فوق)'],
+ tg1:['العلامات','نقاط الأماكن','نقاط الأماكن'],tg2:['الطريق','طريق التجارة','طريق الجمال'],tg3:['الشبكة الجغرافية','خطوط الشبكة','خطوط الشبكة'],tg4:['التسميات','الأسماء','الأسماء'],
+ selH:['المكان المحدَّد','عن هذا المكان','تعرّف على هذا المكان'],plH:['الأماكن','اختر مكانًا','اختر مكانًا'],
+ t2:['الطبقة 02 · المحرك التشريحي','الجزء 2 · الشجرة','الجزء 2 · شجرة الدموع'],
+ h2b:['داخل الشجرة بستة أبعاد','انظر داخل الشجرة','ألقِ نظرة داخل شجرة الدموع!'],
+ sub2:['نموذج مبسّط لشجرة بوسويليا ساكرا. اقطعها وغيّر نطاق التصوير وتنقّل عبر أشهر السنة. تعرض المصفوفة أسفل النموذج المحاور الستة كلها.','نموذج بسيط لشجرة اللبان. أدِرها، واقطعها، وغيّر نوع الضوء، وحرّك الأشهر. تُظهر المربعات الستة تحتها ما تنظر إليه.','أدِر الشجرة! اقطعها! غيّر الرؤية الخارقة وحرّك الأشهر. المربعات الستة تُظهر قواك.'],
+ lyH:['الطبقات التشريحية','أجزاء الشجرة','أجزاء الشجرة'],
+ ly1:['اللحاء','اللحاء','اللحاء'],ly2:['القنوات الراتنجية','قنوات الراتنج','أنابيب الدموع'],ly3:['لب الخشب (الخشب الناقل)','قلب الخشب','وسط الخشب'],ly4:['الجذور','الجذور','الجذور'],ly5:['الأوراق','الأوراق','الأوراق'],ly6:['التشريط والراتنج','الجرح والراتنج','الجرح والدموع'],
+ tdH:['الزمن والعمق','الزمن والشريحة','الزمن والشريحة'],cutL:['عمق المقطع','اقطع الجذع','اقطع الجذع!'],
+ barsNote:['تعرض الأعمدة ملفًا نسبيًا توضيحيًا لراتنج اللبان، وليس قيمًا مقيسة.','هذه الأعمدة للتوضيح فقط وليست قياسات حقيقية.','هذه الأعمدة مجرد صورة لتوضيح الفكرة.'],
+ foot:['الجغرافيا تقريبية وحدود اليابسة مبسّطة. تشريح الشجرة نموذج تعليمي مبسّط.','الخريطة والشجرة رسمان مبسّطان، لذا التفاصيل ليست دقيقة.','الخريطة والشجرة رسمان بسيطان وليسا دقيقين.']
+};
+BNAME.ar_expert=['المرئي','تحت الحمراء القريبة','الحراري','فلورة الأشعة فوق البنفسجية','الأشعة السينية'];
+BNAME.ar_simple=['الضوء العادي','الأشعة تحت الحمراء','رؤية الحرارة','توهّج الأشعة فوق البنفسجية','الأشعة السينية'];
+BNAME.ar_kids=['العيون العادية','ضوء الجاسوس','نظارات الحرارة','يتوهّج في الظلام','عيون الأشعة السينية'];
+CNAME.ar_expert=['أحماض البوسويليك','أسيتات الإنسينسول','ألفا-بينين','ليمونين','أسيتات الأوكتيل'];
+CNAME.ar_simple=['أحماض الراتنج','أسيتات الإنسينسول','رائحة الصنوبر (ألفا-بينين)','رائحة الليمون (ليمونين)','رائحة الفاكهة (أسيتات الأوكتيل)'];
+CNAME.ar_kids=['أحماض الراتنج','إنسينسول','رائحة الصنوبر','رائحة الليمون','رائحة الفاكهة'];
+DIMCHIP.ar_expert=['3D','4D','5D','6D'];
+DIMCHIP.ar_simple=['3D المكان','4D + الزمن','5D + الضوء','6D + المحتويات'];
+DIMCHIP.ar_kids=['3D النظر','4D الفصول','5D الألوان','6D الأسرار'];
+DIMNOTES.ar_expert={3:'الفضاء فقط: خط الطول وخط العرض والتقريب.',4:'يضيف الزمن: ضباب الرياح الموسمية فوق ظفار ووهج يزداد في موسم التشريط.',5:'يضيف النطاق الطيفي: يتغيّر لون اليابسة والماء مع نطاق التصوير.',6:'يضيف الكيمياء: تكتسب مناطق الانتشار لون المركّب الراتنجي المختار (توضيحي).'};
+DIMNOTES.ar_simple={3:'الخريطة فقط: أين توجد الأشياء، ومقدار التقريب.',4:'يضيف الزمن. اختر شهرًا لترى ضباب الصيف ووقت حصاد الراتنج.',5:'يضيف عرض ضوء خاصًا. يتغيّر لون اليابسة والماء كأننا نراهما بكاميرات مختلفة.',6:'يضيف مما يتكوّن الراتنج. اختر مكوّنًا ليلوّن مناطق الشجرة المتوهجة. هذا توضيح وليس قياسًا.'};
+DIMNOTES.ar_kids={3:'انظر إلى الخريطة وقرّب وبعّد!',4:'اختر شهرًا! في الصيف يحوّل ضباب سحري التلال إلى اللون الأخضر، وفي موسم الحصاد تتوهّج مناطق الأشجار.',5:'ارتدِ نظارات الرؤية الخارقة! تتغيّر ألوان اليابسة والبحر كأنها في فيلم جواسيس.',6:'ألقِ نظرة على المكوّنات داخل الدمعة! كل مكوّن يعطي التوهّج لونًا جديدًا.'};
+PHM.ar_expert=['خامل وبلا أوراق.','خامل وبلا أوراق.','يتخلخل اللحاء قبل التشريط.','تبدأ نافذة التشريط. تبدأ الشقوق السطحية تدفّق الراتنج.','تتكوّن حبيبات الراتنج عند الشقوق وتتصلّب على اللحاء.','نهاية التشريط. تظهر أولى براعم الأوراق.','يجلب ضباب الخريف الموسمي اندفاعًا سريعًا للأوراق.','مظلّة كاملة تحت غيوم الخريف.','مظلّة كاملة وتباطؤ في النمو.','تبدأ الأوراق بالتساقط.','يستمر تساقط الأوراق.','خامل من جديد.'];
+PHM.ar_simple=['في راحة. الشجرة بلا أوراق.','في راحة. الشجرة بلا أوراق.','يبدأ اللحاء بالتخلخل قبل الحصاد.','يبدأ موسم الحصاد. تُصنع شقوق صغيرة ويبدأ الراتنج بالتدفق.','يتجمّع الراتنج عند الشقوق ويتصلّب إلى دموع.','ينتهي الحصاد. تظهر أولى البراعم.','يصل ضباب الرياح الموسمية الصيفية وتنمو الأوراق الجديدة بسرعة.','أوراق كاملة تحت الضباب.','أوراق كاملة. يتباطأ النمو.','تبدأ الأوراق بالتساقط.','تستمر الأوراق بالتساقط.','في راحة من جديد.'];
+PHM.ar_kids=['وقت النوم! لا أوراق.','لا تزال نائمة. لا أوراق.','يصبح اللحاء رخوًا. الحصاد قادم!','وقت الحصاد! شقوق صغيرة تجعل الدموع تسيل.','قطرات لزجة تتحول إلى دموع ذهبية صلبة.','انتهى الحصاد! تظهر براعم صغيرة.','يأتي الضباب السحري وتنمو الأوراق بسرعة!','أوراق خضراء كثيرة في الضباب.','لا تزال خضراء لكنها تنمو ببطء.','تبدأ الأوراق بالسقوط.','تسقط أوراق أكثر.','نعود إلى وقت النوم.'];
+const TR={'Start game':'ابدأ اللعبة','Play again':'العب مرة أخرى','Ready?':'مستعد؟','Go go go!':'هيا هيا!','Time! You caught ':'انتهى الوقت! التقطتَ ','Try again':'حاول مرة أخرى','Tap to flip':'اضغط للقلب','Fact':'معلومة'};
+const T=s=>lang==='ar'&&TR[s]||s;
+const QZ_AR=[['يُصنع اللبان من…',['عصارة شجرة','أصداف بحر مسحوقة','نباتات القطن'],0],['أي بلد مشهور بأفضل أنواع اللبان؟',['عُمان','النرويج','البرازيل'],0],['ماذا يفعل الناس باللبان؟',['يحرقونه كبخور','يستخدمونه لعبة','يأكلونه عشاءً'],0],['كيف يحصل الحصّادون على الراتنج؟',['يهزّون الشجرة','يصنعون شقًّا صغيرًا في اللحاء','يقطفون الأوراق'],1]];
+const FL_AR=[['الدموع','اللبان عصارة شجرة تجف وتتحول إلى «دموع» ذهبية صلبة.'],['شجرة قوية','تنمو الشجرة على التلال الصخرية وتتحمل قلة الماء.'],['رحلة طويلة','حملت قوافل الجمال اللبان لأشهر على طريق البخور.'],['ضباب سحري','في الصيف يحوّل ضباب يُسمّى الخريف تلال ظفار إلى اللون الأخضر الزاهي.']];
+const BD_AR=[['مستكشف الخرائط','زُر الأماكن الثلاثة التي ينمو فيها'],['راكب القافلة','زُر المحطات الأربع على طريق التجارة'],['مستخدم متمرّس','جرّب 3D و4D و5D و6D'],['جرّاح الأشجار','اقطع الجذع'],['صائد الدموع','التقط 10 دموع في اللعبة'],['نجم الاختبار','أجب عن كل الأسئلة بشكل صحيح']];
+
+const ph=m=>PHM[mk()][m];
+const bn=b=>BNAME[mk()][BANDS.indexOf(b)],cn=c=>CNAME[mk()][CHEM.indexOf(c)];
+function applyText(){
+  const i=MI[mode];
+  const src=lang==='ar'?AR_I18N:I18N;$$('[data-i]').forEach(e=>{const v=src[e.dataset.i]||I18N[e.dataset.i];if(v&&v[i])e.textContent=v[i];});
+}
+
+function paint(){
+  for(const k in P)P[k].forEach(m=>{
+    const c=new THREE.Color(band[k]);
+    if(k==='canal')c.lerp(new THREE.Color(chem.tint),.45);
+    m.color.copy(c);
+  });
+  ground.children.forEach(l=>l.material.color.setHex(band.ground));
+  document.documentElement.style.setProperty('--accent',band.acc);document.body.style.setProperty('--band',band.acc);
+  $('#mL').textContent=bn(band);$('#mC').textContent=cn(chem);
+  document.querySelectorAll('#bandList .chip,#gBand .chip').forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.id===band.id)));
+  document.querySelectorAll('#bars .bar').forEach(b=>b.classList.toggle('on',b.dataset.id===chem.id));
+  document.querySelectorAll('#gChem .chip').forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.id===chem.id)));
+  applyDim();
+}
+[$('#bandList'),$('#gBand')].forEach(bl=>BANDS.forEach(b=>{const x=document.createElement('button');x.className='chip';x.dataset.id=b.id;x.textContent=b.name;x.onclick=()=>{band=b;paint();};bl.appendChild(x);}));
+const bars=$('#bars');
+CHEM.forEach(c=>{const d=document.createElement('button');d.className='bar chip';d.dataset.id=c.id;d.style.cssText='border:0;background:none;padding:0;width:100%';
+  d.innerHTML='<span>'+c.name+'</span><i><u style="width:'+Math.round(c.v*100)+'%"></u></i>';d.onclick=()=>{chem=c;paint();};bars.appendChild(d);});
+
+// globe dimensions
+let dim=3,gMonth=4;const dimsSeen={3:1};let sliced=false;
+const GPV={expert:{},simple:{},kids:{land:0x9be564,sea:0x29b6f6}};
+const GP={vis:{land:0x4ade80,sea:0x0e5aa7,zone:0xf2bb4b,rel:0xc9a8ff},nir:{land:0xff7ae6,sea:0x2a0f4a,zone:0xffffff,rel:0xc17bff},therm:{land:0xff7a2a,sea:0x1a2c8a,zone:0xffe14a,rel:0xffffff},uv:{land:0x7c6cff,sea:0x120a4a,zone:0xc6ff3d,rel:0x38f2ff},xray:{land:0xcfe2ff,sea:0x142a52,zone:0xffffff,rel:0xdbe8ff}};
+CHEM.forEach(c=>{const b=document.createElement('button');b.className='chip';b.dataset.id=c.id;b.textContent=c.name;b.onclick=()=>{chem=c;paint();};$('#gChem').appendChild(b);});
+[3,4,5,6].forEach(n=>{const b=document.createElement('button');b.className='chip';b.dataset.d=n;b.textContent=n+'D';b.onclick=()=>{dim=n;dimsSeen[n]=1;applyDim();if(badgesReady)checkBadges();};$('#gDim').appendChild(b);});
+function setOff(el,off){el.classList.toggle('dimmed',off);el.querySelectorAll('button,input').forEach(x=>x.disabled=off);}
+function applyDim(){
+  const pal=dim>=5?GP[band.id]:Object.assign({},GP.vis,GPV[mode]);
+  landMat.color.setHex(pal.land);seaMat.color.setHex(pal.sea);
+  const tap=dim>=4?RES[gMonth]:0;
+  mist.material.opacity=dim>=4?LEAF[gMonth]*.3:0;
+  zoneObjs.forEach(o=>{
+    const col=new THREE.Color(o.rel?pal.rel:pal.zone);
+    if(dim>=6)col.lerp(new THREE.Color(chem.tint),.55);
+    o.c.material.color.copy(col);o.ln.material.color.copy(col);
+    o.c.material.opacity=.3+tap*.3;
+    const sc=o.rel?1:1+tap*.4;o.c.scale.setScalar(sc);o.ln.scale.setScalar(sc);
+  });
+  document.querySelectorAll('#gDim .chip').forEach(c=>c.setAttribute('aria-pressed',String(+c.dataset.d===dim)));
+  $('#dimNote').textContent=DIMNOTES[mk()][dim];
+  setOff($('#gTime'),dim<4);setOff($('#gBandWrap'),dim<5);setOff($('#gChemWrap'),dim<6);
+  $('#gcT').classList.toggle('off',dim<4);$('#gcL').classList.toggle('off',dim<5);$('#gcC').classList.toggle('off',dim<6);
+  $('#gT').textContent=dim>=4?MON[gMonth]:'—';$('#gL').textContent=dim>=5?bn(band):'—';$('#gC').textContent=dim>=6?cn(chem):'—';
+  $('#gPhase').textContent=dim>=4?(MON[gMonth]+': '+ph(gMonth)):'';
+  $('#gSeasonLab').textContent=MON[gMonth];
+}
+$('#gSeason').oninput=e=>{gMonth=+e.target.value;applyDim();};
+// layers, season, cut
+document.querySelectorAll('[data-layer]').forEach(i=>i.onchange=()=>{layers[i.dataset.layer].visible=i.checked;});
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const MON_EN=MON.slice(),MON_AR=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+const LEAF=[0,0,0,.05,.15,.4,.9,1,1,.7,.3,.05];
+const RES=[0,0,.15,.65,1,.8,.3,.1,0,0,0,0];
+let leafF=0,resF=0;
+function season(){
+  const m=+$('#season').value;leafF=LEAF[m];resF=RES[m];
+  $('#seasonLab').textContent=MON[m];$('#phase').textContent=ph(m);$('#mT').textContent=MON[m];
+  setLeaves(leafF);
+  drops.forEach(d=>{const s=resF<.02?.0001:(.35+resF*.9)*(1-d.userData.i*.07);d.scale.set(s,s*1.7,s);});
+  wound.scale.setScalar(resF<.02?.0001:1);
+}
+function cut(){
+  const s=+$('#cut').value/100;if(s>=.7)sliced=true;if(badgesReady)checkBadges();clip.constant=.95-1.2*s*(1/.85)*.85;
+  $('#cutLab').textContent=Math.round(s*100)+'%';$('#mZ').textContent=Math.round(s*100)+'%';
+}
+$('#season').oninput=season;$('#cut').oninput=cut;
+
+const tst={vx:0,focus:null};dragger(tCanvas,tree,tst);
+tree.rotation.x=.12;
+season();cut();paint();
+
+
+/* ---------- names, modes, kids extras ---------- */
+function refreshNames(){
+  $$('#bandList .chip,#gBand .chip').forEach(c=>{c.textContent=bn(BANDS.filter(b=>b.id===c.dataset.id)[0]);});
+  $$('#gChem .chip').forEach(c=>{c.textContent=cn(CHEM.filter(x=>x.id===c.dataset.id)[0]);});
+  $$('#bars .bar').forEach(b=>{b.querySelector('span').textContent=cn(CHEM.filter(x=>x.id===b.dataset.id)[0]);});
+  $$('#placeList .chip').forEach(c=>{c.textContent=pn(places.find(q=>q.id===c.dataset.id));});
+  $$('#gDim .chip').forEach(c=>{c.textContent=DIMCHIP[mk()][+c.dataset.d-3];});
+}
+const camel=document.createElement('div');camel.className='lb camel';camel.textContent='🐪';gl.appendChild(camel);
+function setMode(m,fromHash){
+  mode=m;document.body.classList.toggle('simple',m==='simple');document.body.classList.toggle('kids',m==='kids');
+  $$('.seg button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.m===m)));
+  if(!fromHash){try{history.replaceState(null,'','#'+m);}catch(e){}}
+  applyText();refreshNames();select(selId);season();cut();paint();resetLB();
+}
+$$('.seg button').forEach(b=>b.onclick=()=>setMode(b.dataset.m));
+addEventListener('hashchange',()=>{const h=location.hash.slice(1);if(MI[h]!==undefined)setMode(h,true);});
+
+// flip cards
+const FL_EN=[['Tears','Frankincense is tree sap that dries into hard golden “tears”.'],['Tough tree','The tree grows on rocky hills and does well with very little water.'],['Long trip','Camel caravans carried frankincense for months along the Incense Route.'],['Magic mist','In summer, a mist called khareef turns the Dhofar hills bright green.']];
+// confetti
+function confetti(){
+  if(reduce)return;const c=$('#confetti'),cols=['#ff3d81','#ffc21a','#4ad6c3','#7aa2ff','#a8e96d'];
+  for(let i=0;i<36;i++){const s=document.createElement('i');s.style.left=Math.random()*100+'%';s.style.background=cols[i%5];s.style.animationDelay=Math.random()*.4+'s';c.appendChild(s);setTimeout(()=>s.remove(),2600);}
+}
+// game
+const NSV='http://www.w3.org/2000/svg';
+let game=null,best=0;
+const dropsG=$('#drops');
+function teardrop(){
+  const g=document.createElementNS(NSV,'g');g.style.cursor='pointer';
+  const p=document.createElementNS(NSV,'path');p.setAttribute('d','M0,-16 C9,-2 11,6 0,14 C-11,6 -9,-2 0,-16Z');p.setAttribute('fill','#f2b21f');p.setAttribute('stroke','#35176b');p.setAttribute('stroke-width','2.5');g.appendChild(p);
+  const c=document.createElementNS(NSV,'circle');c.setAttribute('r','26');c.setAttribute('fill','transparent');g.appendChild(c);return g;
+}
+function endGame(){
+  const g=game;game=null;$('#gStart').textContent=T('Play again');$('#gStart').disabled=false;
+  const stars=g.score>=15?3:g.score>=8?2:1;
+  $('#gResult').textContent=T('Time! You caught ')+g.score+'. '+'★'.repeat(stars)+'☆'.repeat(3-stars);
+  best=Math.max(best,g.score);checkBadges();if(stars===3)confetti();dropsG.textContent='';
+}
+$('#gStart').onclick=()=>{
+  dropsG.textContent='';game={score:0,miss:0,t:30,last:0,spawn:0,items:[]};
+  $('#gStart').disabled=true;$('#gResult').textContent=T('Go go go!');
+  $('#gScore').textContent=0;$('#gMiss').textContent=0;$('#gmTime').textContent=30;requestAnimationFrame(gloop);
+};
+function gloop(ts){
+  const g=game;if(!g)return;
+  if(!g.last)g.last=ts;const dt=Math.min(.05,(ts-g.last)/1000);g.last=ts;g.t-=dt;g.spawn-=dt;
+  if(g.spawn<=0){
+    const e=teardrop(),it={e:e,x:198+(Math.random()-.5)*150,y:300,v:70+Math.random()*60+(30-g.t)*2.5};
+    e.addEventListener('pointerdown',ev=>{ev.preventDefault();if(it.dead)return;it.dead=true;g.score++;$('#gScore').textContent=g.score;e.style.opacity=0;e.style.transition='opacity .25s';setTimeout(()=>e.remove(),260);});
+    dropsG.appendChild(e);g.items.push(it);g.spawn=.55+Math.random()*.6;
+  }
+  g.items.forEach(it=>{if(it.dead)return;it.y+=it.v*dt;it.e.setAttribute('transform','translate('+it.x+','+it.y+')');
+    if(it.y>372){it.dead=true;g.miss++;$('#gMiss').textContent=g.miss;it.e.remove();}});
+  g.items=g.items.filter(i=>!i.dead);
+  $('#gmTime').textContent=Math.max(0,Math.ceil(g.t));
+  if(g.t<=0){endGame();return;}
+  requestAnimationFrame(gloop);
+}
+// quiz
+const QZ=[['Frankincense is made from…',['The sap of a tree','Crushed seashells','Cotton plants'],0],['Which country is famous for the best frankincense?',['Oman','Norway','Brazil'],0],['What do people do with frankincense?',['Burn it as incense','Use it as a toy','Eat it for dinner'],0],['How do harvesters get the resin?',['They shake the tree','They make a small cut in the bark','They pick the leaves'],1]];
+let qi=0,qs=0,locked=false,quizPerfect=false;
+function renderQ(){
+  const box=$('#quiz');box.textContent='';
+  const QS=lang==='ar'?QZ_AR:QZ;
+  if(qi>=QS.length){
+    const p=document.createElement('p');p.className='q';p.textContent=(lang==='ar'?'أجبتَ عن '+qs+' من '+QS.length+' بشكل صحيح! ':'You got '+qs+' out of '+QZ.length+'! ')+'★'.repeat(Math.max(1,Math.round(qs/QZ.length*3)));box.appendChild(p);
+    const b=document.createElement('button');b.className='btn';b.textContent=T('Try again');b.onclick=()=>{qi=0;qs=0;renderQ();};box.appendChild(b);
+    if(qs===QS.length){quizPerfect=true;checkBadges();confetti();}return;
+  }
+  const q=QS[qi],pg=document.createElement('div');pg.className='prog';pg.textContent=lang==='ar'?'السؤال '+(qi+1)+' من '+QS.length:'Question '+(qi+1)+' of '+QZ.length;box.appendChild(pg);
+  const h=document.createElement('p');h.className='q';h.textContent=q[0];box.appendChild(h);
+  const o=document.createElement('div');o.className='opts';box.appendChild(o);locked=false;
+  q[1].map((t,i)=>i).sort(()=>Math.random()-.5).forEach(i=>{const b=document.createElement('button');b.className='opt';b.type='button';b.textContent=q[1][i];
+    b.onclick=()=>{if(locked)return;if(i===q[2]){locked=true;b.classList.add('good');qs++;setTimeout(()=>{qi++;renderQ();},700);}else{b.classList.add('bad');}};o.appendChild(b);});
+}
+renderQ();
+// badges
+const BD=[['Map explorer','Visit the 3 places where it grows',()=>['dhofar','hadr','som'].every(i=>seenPl[i])],['Caravan rider','Visit all 4 trade road stops',()=>['najran','mecca','petra','gaza'].every(i=>seenPl[i])],['Power user','Try 3D, 4D, 5D and 6D',()=>[3,4,5,6].every(n=>dimsSeen[n])],['Tree surgeon','Slice the trunk open',()=>sliced],['Tear catcher','Catch 10 tears in the game',()=>best>=10],['Quiz star','Get every answer right',()=>quizPerfect]];
+const gotB={};
+BD.forEach(b=>{const d=document.createElement('div');d.className='badge';d.innerHTML='<b>★</b><span><strong>'+b[0]+'</strong><br><small>'+b[1]+'</small></span>';$('#badges').appendChild(d);b.push(d);});
+function checkBadges(){BD.forEach((b,i)=>{if(!gotB[i]&&b[2]()){gotB[i]=1;b[3].classList.add('got');if(mode==='kids')confetti();}});}
+badgesReady=true;
+/* ---------- language switch (English / Arabic) ---------- */
+const ST=[
+ ['h1',0,'الراتنج المقدّس: <em>بوسويليا ساكرا</em> ومصفوفة الفضاء'],
+ ['.seg button',0,'خبير'],['.seg button',1,'مبسّط'],['.seg button',2,'أطفال'],
+ ['.author > .k',0,'المؤلف'],['.author > b',0,'بحوث تجربة المستخدم السلوكية · العمارة الفضائية ثلاثية الأبعاد'],
+ ['.author > span:not(.k):not(.name)',0,'بكالوريوس مرتبة الشرف، جامعة ماكماستر'],['.author .row .k',0,'البريد الإلكتروني'],
+ ['section.s-only h2',0,'كلمات يجب معرفتها'],
+ ['section.s-only dt',0,'الراتنج'],['section.s-only dd',0,'مادة صمغية لزجة تتصلّب عند ملامسة الهواء. اللبان نوع من الراتنج.'],
+ ['section.s-only dt',1,'التشريط'],['section.s-only dd',1,'عمل شقوق صغيرة في اللحاء ليسيل الراتنج.'],
+ ['section.s-only dt',2,'طريق البخور'],['section.s-only dd',2,'طريق التجارة القديم الذي حمل اللبان على الجمال من جنوب الجزيرة العربية إلى البحر المتوسط.'],
+ ['section.s-only dt',3,'الخريف'],['section.s-only dd',3,'ضباب الرياح الموسمية الصيفي الذي يسقي تلال ظفار.'],
+ ['section.k-only h2',0,'هل تعلم؟'],['section.k-only .sub',0,'اضغط على البطاقة لتقلبها.'],
+ ['section.k-only h2',1,'لعبة: اصطد الدموع!'],['section.k-only .sub',1,'تتساقط دموع ذهبية من الشجرة. المس كل دمعة قبل أن تصل إلى الأرض. لديك 30 ثانية.'],
+ ['.score span',0,'الملتقَطة'],['.score span',1,'الفائتة'],['.score span',2,'ثانية'],
+ ['section.k-only h2',2,'وقت الاختبار'],['section.k-only h2',3,'شاراتك'],
+ ['footer > span',1,'المؤلف: Asia Khan · بكالوريوس مرتبة الشرف، جامعة ماكماستر']
+];
+const GRES={'Ready?':1,'Go go go!':1};
+function renderFlips(){
+  const box=$('#flips');box.textContent='';
+  (lang==='ar'?FL_AR:FL_EN).forEach(f=>{
+    const b=document.createElement('button');b.type='button';b.className='flip';b.innerHTML='<small>'+T('Tap to flip')+'</small>'+f[0];let on=false;
+    b.onclick=()=>{on=!on;b.innerHTML=on?'<small>'+T('Fact')+'</small>'+f[1]:'<small>'+T('Tap to flip')+'</small>'+f[0];};box.appendChild(b);});
+}
+function setLang(l){
+  lang=l;const ar=l==='ar',H=document.documentElement;
+  H.lang=ar?'ar':'en';H.dir=ar?'rtl':'ltr';
+  document.title=ar?'الراتنج المقدّس: بوسويليا ساكرا ومصفوفة الفضاء':'The Sacred Resin: Boswellia Sacra & Spatial Matrix (Simple and Kids)';
+  const lb=$('#langBtn');lb.textContent=ar?'English':'العربية';lb.lang=ar?'en':'ar';lb.setAttribute('aria-pressed',String(ar));
+  MON.splice(0,12,...(ar?MON_AR:MON_EN));
+  ST.forEach(s=>{const e=$$(s[0])[s[1]];if(!e)return;if(e.dataset.en===undefined)e.dataset.en=e.innerHTML;e.innerHTML=ar?s[2]:e.dataset.en;});
+  LB.forEach(l=>{l.e.textContent=ar?(ARLB[l.en]||l.en):l.en;l.w=0;});
+  BD.forEach((b,i)=>{b[3].innerHTML='<b>★</b><span><strong>'+(ar?BD_AR[i][0]:b[0])+'</strong><br><small>'+(ar?BD_AR[i][1]:b[1])+'</small></span>';});
+  if(!game){const gs=$('#gStart'),gr=$('#gResult');
+    if(gs.textContent==='Start game'||gs.textContent==='ابدأ اللعبة')gs.textContent=T('Start game');
+    else if(gs.textContent==='Play again'||gs.textContent==='العب مرة أخرى')gs.textContent=T('Play again');
+    if(gr.textContent==='Ready?'||gr.textContent==='مستعد؟')gr.textContent=T('Ready?');}
+  renderFlips();renderQ();
+  try{localStorage.setItem('lang',l)}catch(e){}
+  setMode(mode,true);
+}
+$('#langBtn').onclick=()=>setLang(lang==='ar'?'en':'ar');
+
+const h0=location.hash.slice(1);
+setMode(MI[h0]!==undefined?h0:'simple',true);
+try{if(localStorage.getItem('lang')==='ar')setLang('ar');}catch(e){}
+
+/* ---------- LOOP ---------- */
+let t0=0,vis=true;
+document.addEventListener('visibilitychange',()=>{vis=!document.hidden;});
+function norm(a){return ((a%TAU)+TAU)%TAU;}
+function frame(t){
+  requestAnimationFrame(frame);
+  if(!vis)return;
+  fit(gR,gCam,gCanvas,setDist);fit(tR,tCam,tCanvas,tDist);
+  // globe camera glide and readout
+  gCam.position.x+=(tgt.x-gCam.position.x)*.2;gCam.position.y+=(tgt.y-gCam.position.y)*.2;gCam.position.z+=(tgt.z-gCam.position.z)*.2;
+  {const cx=gCam.position.x,cy=gCam.position.y,zz=Math.sqrt(Math.max(0,1-cx*cx-cy*cy));
+   tmpV.set(cx,cy,zz).applyQuaternion(globe.quaternion.clone().invert());
+   const la=Math.asin(Math.max(-1,Math.min(1,tmpV.y)))/D2R,lo=Math.atan2(tmpV.x,tmpV.z)/D2R;
+   $('#gX').textContent=Math.abs(lo).toFixed(1)+'°'+DC(lo>=0?'E':'W');$('#gY').textContent=Math.abs(la).toFixed(1)+'°'+DC(la>=0?'N':'S');
+   $('#gZ').textContent=(homeZ(gCam)/gCam.position.z).toFixed(2)+'×';}
+  rings.forEach(r=>{const f=((t*.0007)+r.userData.ph)%1;r.scale.setScalar(1+f*1.6);r.material.opacity=(1-f)*.8;});
+  const pi=Math.floor((t*.00012%1)*(path.length-1));caravan.position.copy(path[pi]);
+  // tree
+  if(!tst.down()){tree.rotation.y+=tst.vx;tst.vx*=.94;if(!reduce)tree.rotation.y+=.0022;}
+  drops.forEach(d=>{const s=d.scale.x;if(s>.01)d.position.y+=0;});
+  const pulse=.55+.45*Math.sin(t*.003);
+  P.canal.forEach(m=>{if(m.isLineBasicMaterial)m.opacity=.55+.4*pulse;});
+  $('#mX').textContent=Math.round(norm(tree.rotation.y)/D2R)+'°';
+  $('#mY').textContent=Math.round(tree.rotation.x/D2R)+'°';
+  gR.render(gS,gCam);tR.render(tS,tCam);updLB();
+  if(mode==='kids'&&route.visible){tmpV.copy(caravan.position).applyMatrix4(globe.matrixWorld);const op=Math.max(0,Math.min(1,(tmpV.dot(gCam.position)-1.02)/.4));
+    if(op>0){tmpV.project(gCam);camel.style.opacity=op;camel.style.transform='translate('+(((tmpV.x*.5+.5)*gCanvas.clientWidth)-14).toFixed(1)+'px,'+(((-tmpV.y*.5+.5)*gCanvas.clientHeight)-26).toFixed(1)+'px)';}else camel.style.opacity=0;}
+}
+requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>
